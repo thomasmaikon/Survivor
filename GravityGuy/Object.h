@@ -24,6 +24,10 @@
 #include "Geometry.h"           // todo objeto deve ter uma bounding box
 
 // -----------------------------------------------------------------------------
+#define LIMBOX -100000.0f
+#define LIMBOY -100000.0f
+
+enum ListTypes { PLAYER, COIN, PLATFORM};
 
 class Object
 {

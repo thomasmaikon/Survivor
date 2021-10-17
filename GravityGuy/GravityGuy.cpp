@@ -31,6 +31,7 @@ void GravityGuy::Init()
     audio->Add(MENU, "Resources/sounds/menu.wav");
     audio->Add(MUSIC, "Resources/Music.wav");
     audio->Add(TRANSITION, "Resources/Transition.wav");
+    audio->Add(GETCOIN, "Resources/sounds/moeda_sound.wav");
 
     // bounding box não visível
     viewBBox = false;
@@ -85,7 +86,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
     // configura o motor
     engine->window->Mode(WINDOWED);
-    engine->window->Size(600, 300);
+    engine->window->Size(800, 400);
     engine->window->Color(30, 50, 80);
     engine->window->Title("Gravity Guy");
     engine->window->Icon(IDI_ICON);

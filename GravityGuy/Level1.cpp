@@ -17,7 +17,7 @@
 #include "Player.h"
 #include "Platform.h"
 #include "Background.h"
-
+#include "Moeda.h"
 #include <string>
 #include <fstream>
 using std::ifstream;
@@ -50,8 +50,15 @@ void Level1::Init()
     float posX, posY;
     uint  platType;
     Color white { 1,1,1,1 };
-
-    ifstream fin;
+    Moeda* moeda = new Moeda(350,300, white);
+    scene->Add(moeda, ObjectGroup::STATIC);
+    moeda = new Moeda(360, 300, white);
+    scene->Add(moeda, ObjectGroup::STATIC);
+    moeda = new Moeda(370, 300, white);
+    scene->Add(moeda, ObjectGroup::STATIC);
+    plat = new Platform(window->CenterX(), window->Height()-16, 5, white);
+    scene->Add(plat, ObjectGroup::STATIC);
+    /*ifstream fin;
     fin.open("Level1.txt");
 
     fin >> posX;
@@ -61,7 +68,7 @@ void Level1::Init()
         {
             // lê linha com informações da plataforma
             fin >> posY; fin >> platType;
-            plat = new Platform(posX-50, posY, platType, white);
+            plat = new Platform(posX, posY, platType, white);
             scene->Add(plat, STATIC);
         }
         else
@@ -75,13 +82,14 @@ void Level1::Init()
         fin >> posX;
     }
     fin.close();
+    */
 
     // ----------------------
 
     // inicia com música
-    GravityGuy::audio->Frequency(MUSIC, 0.94f);
-    GravityGuy::audio->Frequency(TRANSITION, 1.0f);
-    GravityGuy::audio->Play(MUSIC);
+    //GravityGuy::audio->Frequency(MUSIC, 0.94f);
+    //GravityGuy::audio->Frequency(TRANSITION, 1.0f);
+    //GravityGuy::audio->Play(MUSIC);
 }
 
 // ------------------------------------------------------------------------------

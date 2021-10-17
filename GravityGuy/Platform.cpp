@@ -21,6 +21,11 @@ Platform::Platform(float posX, float posY, uint platType, Color tint) : color(ti
     case MEDIUM: platform = new Sprite("Resources/MediumGray.png"); type = MEDIUM; break;
     case LARGE:  platform = new Sprite("Resources/LongGray.png"); type = LARGE; break;
     case FINISH: platform = new Sprite("Resources/Finish.png"); type = FINISH; break;
+
+        case 5:
+        platform = new Sprite("Resources/chao.png");
+        type = PLATFORM;
+        break;
     }
     
     BBox(new Rect(-platform->Width()/2.0f, 
@@ -29,6 +34,7 @@ Platform::Platform(float posX, float posY, uint platType, Color tint) : color(ti
                    platform->Height()/2.0f));
 
     MoveTo(posX, posY, Layer::MIDDLE);
+    type = PLATFORM;
 }
 
 // ---------------------------------------------------------------------------------

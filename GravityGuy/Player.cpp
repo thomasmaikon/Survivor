@@ -37,7 +37,7 @@ Player::Player()
     // inicializa estado do player
     gravity = NORMAL;  
     level = 0;
-
+    type = PLAYER;
     // posição inicial
     MoveTo(window->CenterX(), 24.0f, Layer::FRONT);
 }
@@ -73,10 +73,10 @@ void Player::OnCollision(Object * obj)
     else
     {
         // mantém personagem em cima da plataforma
-        if (gravity == NORMAL)
-            MoveTo(window->CenterX(), obj->Y() - 32);
-        else
-            MoveTo(window->CenterX(), obj->Y() + 32);
+       // if (gravity == NORMAL)
+           MoveTo(x, obj->Y() - 32);
+        //else
+         //   MoveTo(window->CenterX(), obj->Y() + 32);
     }
 
     
@@ -111,12 +111,21 @@ void Player::Update()
 {
     // ação da gravidade sobre o personagem
     //if (gravity == NORMAL)    
-        //Translate(0, 300 * gameTime);
+    Translate(0, 300 * gameTime);
     //else
       //  Translate(0, -300 * gameTime);
 
     if (window->KeyDown(VK_RIGHT))
         Translate(300 * gameTime, 0);
+
+    if (window->KeyDown(VK_LEFT))
+        Translate(-300 * gameTime, 0);
+
+    if(window->KeyDown(VK_DOWN))
+        Translate(0, 300 * gameTime);
+
+    if (window->KeyDown(VK_UP))
+        Translate(0, -300 * gameTime);
 
     // atualiza animação
     anim->Select(gravity);
