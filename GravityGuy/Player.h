@@ -33,7 +33,7 @@ private:
     uint        gravity;                // gravidade atuando sobre o jogador
     int         level;                  // nível finalizado
     bool isJumping = false;
-    bool isCollided = false;
+    bool isCollided = true;
     int jump;
     
 public:

@@ -115,17 +115,20 @@ void Player::OnCollision(Object * obj)
 
 void Player::Update()
 {
-    // ação da gravidade sobre o personagem
-    //if (gravity == NORMAL)    
     Translate(0, 300 * gameTime);
-    //else
-      //  Translate(0, -300 * gameTime);
-
-    if (window->KeyDown(VK_RIGHT))
+    
+    if (window->KeyDown(VK_RIGHT) && isCollided) 
+    {
         Translate(300 * gameTime, 0);
+        GravityGuy::audio->Play(MOVINGPLAYER);
 
-    if (window->KeyDown(VK_LEFT))
+    }
+
+    if (window->KeyDown(VK_LEFT) && isCollided)
+    {
         Translate(-300 * gameTime, 0);
+        GravityGuy::audio->Play(MOVINGPLAYER);
+    }
 
     if(window->KeyDown(VK_DOWN))
         Translate(0, 300 * gameTime);

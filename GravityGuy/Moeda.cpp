@@ -65,7 +65,6 @@ void Moeda::OnCollision(Object* obj) {
 void Moeda::Draw()
 {
     if (!colided) {
-        
         anim->Draw(x, y, z, color);
     }
 }

@@ -32,6 +32,7 @@ Chao::Chao(float posX, float posY, Color tinta) : color(tinta)
         chao2->Height() / 2.0f));
 
     MoveTo(posX, posY, Layer::FRONT);
+    type = PLATFORM;
 }
 
 // ---------------------------------------------------------------------------------
