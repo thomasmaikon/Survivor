@@ -21,7 +21,7 @@
 
 // ------------------------------------------------------------------------------
 
-enum Gravity {NORMAL,INVERTED};         // tipo da gravidade
+enum ANIMATION {CAINDO,ANDANDO};         // tipo da gravidade
 
 // ---------------------------------------------------------------------------------
 
@@ -30,10 +30,12 @@ class Player : public Object
 private:
     TileSet   * tileset;                // folha de sprites do personagem
     Animation * anim;                   // animação do personagem
-    uint        gravity;                // gravidade atuando sobre o jogador
+    uint        typeAnim;                // gravidade atuando sobre o jogador
     int         level;                  // nível finalizado
-    bool isJumping = false;
-    bool isCollided = true;
+    
+    bool isJumping;
+    bool platformCollided;
+    bool soundControllerMove;
     int jump;
     
 public:

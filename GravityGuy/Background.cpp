@@ -42,7 +42,7 @@ Background::~Background()
 void Background::Update()
 {
     // move sprites com velocidades diferentes
-    xF -= 200 * gameTime;
+    xF -= 150 * gameTime;
 
 }
 

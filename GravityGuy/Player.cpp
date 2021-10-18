@@ -22,11 +22,11 @@ Player::Player()
     anim = new Animation(tileset, 0.120f, true);
 
     // sequências de animação do player
-    uint invert[4] = {6,7,8,9};
+    uint invert[4] = {1};
     uint normal[4] = {1,2,3,4};
 
-    anim->Add(INVERTED, invert, 4);
-    anim->Add(NORMAL, normal, 4);
+    anim->Add(ANDANDO, normal, 4);
+    anim->Add(CAINDO, invert, 1);
 
     // cria bounding box
     BBox(new Rect(
@@ -36,12 +36,16 @@ Player::Player()
         tileset->TileHeight() / 2.0f));
     
     // inicializa estado do player
-    gravity = NORMAL;  
+    typeAnim = CAINDO;
+    
     level = 0;
     type = PLAYER;
     // posição inicial
     MoveTo(window->CenterX(), 24.0f, Layer::FRONT);
     jump = 0;
+
+    platformCollided = false;
+    soundControllerMove = true;
 }
 
 // ---------------------------------------------------------------------------------
@@ -58,7 +62,7 @@ void Player::Reset()
 {
     // volta ao estado inicial
     MoveTo(window->CenterX(), 24.0f, Layer::FRONT);
-    gravity = NORMAL;
+    typeAnim = CAINDO;
     level = 0;
 }
 
@@ -71,87 +75,71 @@ void Player::OnCollision(Object * obj)
         MoveTo(x, obj->Y() - 32);
     }
 
-   /*if (obj->Type() == FINISH)
-    {
-        // chegou ao final do nível
-        level++;
-    }
-    else
-    {
-        // mantém personagem em cima da plataforma
-       // if (gravity == NORMAL)
+    if (obj->Type() == PLATFORM) { 
+        
+            platformCollided = true;
+            if (soundControllerMove) {
+                GravityGuy::audio->Play(MOVINGPLAYER, true);
+                soundControllerMove = false;
+            }
+            anim->Select(ANDANDO);
+
+            if (window->KeyDown(VK_RIGHT))
+            {
+                Translate(300 * gameTime, 0);
+                GravityGuy::audio->Frequency(MOVINGPLAYER, 1.1f);
+            }
+
+            if (window->KeyDown(VK_LEFT) && platformCollided)
+            {
+                Translate(-150 * gameTime, 0);
+                GravityGuy::audio->Frequency(MOVINGPLAYER, 0.9f);
+            }
            
-        //else
-         //   MoveTo(window->CenterX(), obj->Y() + 32);
-    }*/
-
-    if (obj->Type() == PLATFORM) { isCollided = true; }
-    else{ isCollided = false; }
-
-    // ----------------------------------------------------------
-    // Processa teclas pressionadas
-    // ----------------------------------------------------------
-    // jogador só pode alterar a gravidade enquanto estiver
-    // em cima de uma plataforma, não é possível a mudança no ar
-    // ----------------------------------------------------------
-
-    if (window->KeyPress(VK_SPACE))
-    {
-        gravity = !gravity;
-
-        // toca efeito sonoro
-        //GravityGuy::audio->Play(TRANSITION);
-
-        // tira player da plataforma para evitar 
-        // detecção de colisão no quadro seguinte
-        //if (gravity == NORMAL)
-            //Translate(0, 12);
-        //else
-            //Translate(0 , -12);
+            if (window->KeyPress(VK_UP) && platformCollided)
+            {
+                //Translate(0, -4800 * gameTime);
+                isJumping = true;
+            }else{ isJumping = false; }
     }
-    
 }
 
 // ---------------------------------------------------------------------------------
 
 void Player::Update()
 {
-    Translate(0, 300 * gameTime);
+    //gravidade
     
-    if (window->KeyDown(VK_RIGHT) && isCollided) 
-    {
-        Translate(300 * gameTime, 0);
-        GravityGuy::audio->Play(MOVINGPLAYER);
-
-    }
-
-    if (window->KeyDown(VK_LEFT) && isCollided)
-    {
-        Translate(-300 * gameTime, 0);
-        GravityGuy::audio->Play(MOVINGPLAYER);
-    }
+    Translate(0, 100 * gameTime);
 
     if(window->KeyDown(VK_DOWN))
+    {
         Translate(0, 300 * gameTime);
-
-    if ((window->KeyPress(VK_UP)|| isJumping) && isCollided) {
-            //altura testada e recomendada é 1100
-            if (jump <= 1200)
-            {
-                isJumping = true;
-                jump += 200;
-            }
-            else {
-                isJumping = false;
-                jump = 0;
-            }
-        Translate(0, -jump * gameTime);
     }
+
+    if(isJumping)
+    {
+        if (jump <= 2400) {
+            jump += 400;
+            Translate(400 * gameTime, -600 * gameTime);
+            GravityGuy::audio->Stop(MOVINGPLAYER);
+            anim->Select(CAINDO);
+        }
+        else {
+            isJumping = false; jump = 0;
+            Translate(200 * gameTime, 0);
+            soundControllerMove = true;
+        }
         
+    }
+
+    Translate(-100 * gameTime, 0);// empurrado para tras por nao fazer nada
     
     // atualiza animação
-    anim->Select(gravity);
-    anim->NextFrame();
+    //anim->Select(gravity);
+    anim->NextFrame();    
+    
+
 }
 
 // ---------------------------------------------------------------------------------
