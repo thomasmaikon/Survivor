@@ -110,16 +110,17 @@ void Player::Update()
     //gravidade
     
     Translate(0, 100 * gameTime);
+
     if (window->KeyPress(VK_UP))
     {
-
         isJumping = true;
         //MoveTo(x, window->Height() - 60);
         int xapica = 0;
-        while(xapica < 100){
+        while(xapica < 150 ){
         Translate(50 * gameTime, -500 * gameTime);
         xapica += 1;
         }
+        xapica = 0;
     }
    
    

@@ -21,7 +21,7 @@
 
 // ------------------------------------------------------------------------------
 
-enum Sounds {MENU, MUSIC, TRANSITION, GETCOIN, MOVINGPLAYER};
+enum Sounds {MENU, MUSIC, TRANSITION, GETCOIN, MOVINGPLAYER, FIRE};
 
 // ------------------------------------------------------------------------------
 

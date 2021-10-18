@@ -21,6 +21,7 @@
 #include <string>
 #include <fstream>
 #include "Chao.h"
+#include "BolaDeFogo.h"
 using std::ifstream;
 using std::string;
 
@@ -48,6 +49,7 @@ void Level1::Init()
     // ----------------------
 
     Chao * chao;
+    BolaDeFogo* bola;
     float posX, posY;
     uint  platType;
     Color white { 1,1,1,1 };
@@ -59,6 +61,9 @@ void Level1::Init()
     scene->Add(moeda, ObjectGroup::STATIC);
     chao = new Chao(window->CenterX(), window->Height()-16, white);
     scene->Add(chao, ObjectGroup::STATIC);
+
+    bola = new BolaDeFogo(window->CenterX(), 0, white);
+    scene->Add(bola, ObjectGroup::STATIC);
     /*ifstream fin;
     fin.open("Level1.txt");
 
