@@ -106,6 +106,7 @@ void Level1::Update()
     else if (GravityGuy::player->Bottom() < 0 || GravityGuy::player->Top() > window->Height())
     {
         GravityGuy::audio->Stop(MUSIC);
+        GravityGuy::audio->Stop(MOVINGPLAYER);
         GravityGuy::NextLevel<GameOver>();
         GravityGuy::player->Reset();
     }
