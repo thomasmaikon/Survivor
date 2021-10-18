@@ -41,7 +41,7 @@ Player::Player()
     level = 0;
     type = PLAYER;
     // posição inicial
-    MoveTo(window->CenterX(), 24.0f, Layer::FRONT);
+    MoveTo(window->CenterX(), window->Height()-80.0f, Layer::FRONT);
     jump = 0;
 
     platformCollided = false;
@@ -71,12 +71,14 @@ void Player::Reset()
 
 void Player::OnCollision(Object * obj)
 {
-    if (obj->Type() != COIN) {
-        MoveTo(x, obj->Y() - 32);
-    }
 
     if (obj->Type() == PLATFORM) { 
-        
+
+            isJumping = false;
+
+            if(!isJumping)
+                MoveTo(x, obj->Y() - 32);
+
             platformCollided = true;
             if (soundControllerMove) {
                 GravityGuy::audio->Play(MOVINGPLAYER, true);
@@ -90,17 +92,14 @@ void Player::OnCollision(Object * obj)
                 GravityGuy::audio->Frequency(MOVINGPLAYER, 1.1f);
             }
 
-            if (window->KeyDown(VK_LEFT) && platformCollided)
+            if (window->KeyDown(VK_LEFT) )
             {
                 Translate(-150 * gameTime, 0);
                 GravityGuy::audio->Frequency(MOVINGPLAYER, 0.9f);
             }
-           
-            if (window->KeyPress(VK_UP) && platformCollided)
-            {
-                //Translate(0, -4800 * gameTime);
-                isJumping = true;
-            }else{ isJumping = false; }
+
+            
+            
     }
 }
 
@@ -111,29 +110,21 @@ void Player::Update()
     //gravidade
     
     Translate(0, 100 * gameTime);
-
-    if(window->KeyDown(VK_DOWN))
+    if (window->KeyPress(VK_UP))
     {
-        Translate(0, 300 * gameTime);
-    }
 
-    if(isJumping)
-    {
-        if (jump <= 2400) {
-            jump += 400;
-            Translate(400 * gameTime, -600 * gameTime);
-            GravityGuy::audio->Stop(MOVINGPLAYER);
-            anim->Select(CAINDO);
+        isJumping = true;
+        //MoveTo(x, window->Height() - 60);
+        int xapica = 0;
+        while(xapica < 100){
+        Translate(50 * gameTime, -500 * gameTime);
+        xapica += 1;
         }
-        else {
-            isJumping = false; jump = 0;
-            Translate(200 * gameTime, 0);
-            soundControllerMove = true;
-        }
-        
     }
+   
+   
 
-    Translate(-100 * gameTime, 0);// empurrado para tras por nao fazer nada
+    //Translate(-100 * gameTime, 0);// empurrado para tras por nao fazer nada
     
     // atualiza animação
     //anim->Select(gravity);
