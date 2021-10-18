@@ -1,2 +1,37 @@
-﻿  Player.cpp
-  GravityGuy.vcxproj -> C:\Users\thoma\Documents\Jogos\unidade_2\Lab18\GravityGuy\Debug\GravityGuy.exe
+﻿  compilation object save succeeded; see E:\Ciencia da Computacao\Jogos\Survivor\GravityGuy\Shaders\Pixel.cso
+  compilation object save succeeded; see E:\Ciencia da Computacao\Jogos\Survivor\GravityGuy\Shaders\Vertex.cso
+  Animation.cpp
+  Audio.cpp
+  Background.cpp
+  Chao.cpp
+  Engine.cpp
+  Font.cpp
+  Game.cpp
+  GameOver.cpp
+  Geometry.cpp
+  Graphics.cpp
+  GravityGuy.cpp
+  Home.cpp
+  Image.cpp
+  Level1.cpp
+E:\Ciencia da Computacao\Jogos\Survivor\GravityGuy\Level1.cpp(60,56): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+E:\Ciencia da Computacao\Jogos\Survivor\GravityGuy\Level1.cpp(51,17): warning C4101: 'posY': variável local não referenciada
+E:\Ciencia da Computacao\Jogos\Survivor\GravityGuy\Level1.cpp(51,11): warning C4101: 'posX': variável local não referenciada
+E:\Ciencia da Computacao\Jogos\Survivor\GravityGuy\Level1.cpp(52,11): warning C4101: 'platType': variável local não referenciada
+  Level2.cpp
+  Moeda.cpp
+  Object.cpp
+  Platform.cpp
+  Player.cpp
+  Renderer.cpp
+  Gerando Código...
+  Compilando...
+  Scene.cpp
+  Sound.cpp
+  Sprite.cpp
+  Texture.cpp
+  TileSet.cpp
+  Timer.cpp
+  Window.cpp
+  Gerando Código...
+  GravityGuy.vcxproj -> E:\Ciencia da Computacao\Jogos\Survivor\Debug\GravityGuy.exe
