@@ -11,16 +11,17 @@
 
 #include "BolaDeFogo.h"
 #include "Timer.h"
-
+#include "Level1.h"
 // ---------------------------------------------------------------------------------
 
-BolaDeFogo::BolaDeFogo(float posX, float posY, Color tinta) : color(tinta)
+BolaDeFogo::BolaDeFogo(float posX, float posY, Color tinta, uint level) : color(tinta)
 {
-
+    this->level = level;
     bolaDeFogo = new TileSet("Resources/FireBall.png", 40, 50, 4, 8);
     uint caindo[5] = { 0,1,2,3,4 };
     uint bateu[4] = { 5,6,7 };
     anim = new Animation(bolaDeFogo, 0.05f, true);
+    
     anim->Add(DOWN, caindo, 5);
     anim->Add(COLLIDED, bateu, 3);
 
@@ -31,41 +32,31 @@ BolaDeFogo::BolaDeFogo(float posX, float posY, Color tinta) : color(tinta)
         bolaDeFogo->TileHeight() / 2.0f));
 
     MoveTo(posX, posY, Layer::FRONT);
+   
     anim->Select(DOWN);
     type = COIN;
 }
 
+
+
 // ---------------------------------------------------------------------------------
 
-BolaDeFogo::~BolaDeFogo()
-{
+BolaDeFogo::~BolaDeFogo() {
     delete bolaDeFogo;
+    delete anim;
 }
+
 
 // -------------------------------------------------------------------------------
 
-void BolaDeFogo::Update()
+void BolaDeFogo::OnCollision(Object* obj) 
 {
-    // move plataforma apenas no eixo x
-    Translate(0, 100*gameTime);
-
-    if (y > 300) {
-        anim->Select(COLLIDED);
-        
-    }
-    anim->NextFrame();
-}
-
-// -------------------------------------------------------------------------------
-
-void BolaDeFogo::OnCollision(Object* obj) {
-
-    if (obj->Type() == PLAYER && isFirst)
-    {
+    if (isFirst) {
         isFirst = false;
-        GravityGuy::audio->Play(FIRE);
-        colided = true;
-        MoveTo(LIMBOX, LIMBOY, z);
+        GravityGuy::audio->Play(FIRE); 
+        anim->Select(EXPLOSION::COLLIDED);
+        collided = true;
+        MoveTo(x, obj->Y() - 40, z);
     }
 }
 
@@ -73,8 +64,27 @@ void BolaDeFogo::OnCollision(Object* obj) {
 
 void BolaDeFogo::Draw()
 {
-    if (!colided) {
+    anim->Draw(x, y, z, color);
+}
 
-        anim->Draw(x, y, z, color);
+// -------------------------------------------------------------------------------
+
+void BolaDeFogo::Update()
+{
+    // \gravidade 
+    Translate(0, 200 * gameTime);
+
+    anim->NextFrame();
+    short endFrame = 7;
+    if (collided && anim->Frame() == endFrame)
+    {
+        switch (level)
+        {
+        default:
+        case 1:
+            Level1::scene->Delete();
+            break;
+        }
     }
 }
+

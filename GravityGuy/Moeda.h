@@ -19,10 +19,10 @@ private:
     Animation* anim;
     Color color;                            // cor da plataforma
     bool colided = false;
-    bool isFirst = true;
+    uint level;
 
 public:
-    Moeda(float posX, float posY, Color tinta);                   // construtor    
+    Moeda(float posX, float posY, Color tinta, uint level);                   // construtor    
     ~Moeda();                            // destrutor
 
     void OnCollision(Object* obj);           // resolução da colisão

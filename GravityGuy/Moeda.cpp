@@ -11,12 +11,14 @@
 
 #include "Moeda.h"
 #include "Timer.h"
+#include "Level1.h"
+#include "Level2.h"
 
 // ---------------------------------------------------------------------------------
 
-Moeda::Moeda(float posX, float posY, Color tinta) : color(tinta)
+Moeda::Moeda(float posX, float posY, Color tinta, uint level) : color(tinta)
 {
-    
+    this->level = level;
     moeda = new TileSet("Resources/moeda.png", 32, 32, 8, 8);
     anim = new Animation(moeda, 0.05f, true);
 
@@ -36,6 +38,7 @@ Moeda::Moeda(float posX, float posY, Color tinta) : color(tinta)
 Moeda::~Moeda()
 {
     delete moeda;
+    delete anim;
 }
 
 // -------------------------------------------------------------------------------
@@ -51,12 +54,11 @@ void Moeda::Update()
 
 void Moeda::OnCollision(Object* obj) {
     
-    if( obj->Type() == PLAYER && isFirst)
+    if( obj->Type() == PLAYER)
     {
-        isFirst = false;
         GravityGuy::audio->Play(GETCOIN);
         colided = true;
-        MoveTo(LIMBOX, LIMBOY, z);
+        //MoveTo(LIMBOX, LIMBOY, z);
     }
 }
 
@@ -64,8 +66,20 @@ void Moeda::OnCollision(Object* obj) {
 
 void Moeda::Draw()
 {
-    if (!colided) {
-        
-        anim->Draw(x, y, z, color);
-    }
+   anim->Draw(x, y, z, color);
+   
+   if(colided)
+   {
+       switch (level)
+       {
+       case 1:
+           Level1::scene->Delete();
+           break;
+       case 2:
+           Level2::scene->Delete();
+           break;
+       default:
+           break;
+       }
+   }
 }

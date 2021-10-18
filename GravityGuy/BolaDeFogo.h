@@ -10,7 +10,7 @@
 #include "TileSet.h"
 #include "Animation.h"
 
-enum EXPOLOSION{DOWN, COLLIDED};
+enum EXPLOSION{DOWN, COLLIDED};
 // ---------------------------------------------------------------------------------
 
 class BolaDeFogo : public Object
@@ -19,11 +19,12 @@ private:
     TileSet* bolaDeFogo = nullptr;            // sprite da plataforma
     Animation* anim;
     Color color;                            // cor da plataforma
-    bool colided = false;
+    bool collided = false;
     bool isFirst = true;
+    uint level;
 
 public:
-    BolaDeFogo(float posX, float posY, Color tinta);                   // construtor    
+    BolaDeFogo(float posX, float posY, Color tinta, uint level);                   // construtor    
     ~BolaDeFogo();                            // destrutor
 
     void OnCollision(Object* obj);           // resolução da colisão

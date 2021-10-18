@@ -50,52 +50,23 @@ void Level1::Init()
 
     Chao * chao;
     BolaDeFogo* bola;
-    float posX, posY;
     uint  platType;
+    float posX, posY;
     Color white { 1,1,1,1 };
-    Moeda* moeda = new Moeda(350,300, white);
+    Moeda* moeda = new Moeda(350,300, white, 1);
     scene->Add(moeda, ObjectGroup::STATIC);
-    moeda = new Moeda(360, 300, white);
+    
+    moeda = new Moeda(360, 300, white,1);
     scene->Add(moeda, ObjectGroup::STATIC);
-    moeda = new Moeda(370, 300, white);
+    
+    moeda = new Moeda(370, 300, white,1);
     scene->Add(moeda, ObjectGroup::STATIC);
+    
     chao = new Chao(window->CenterX(), window->Height()-16, white);
     scene->Add(chao, ObjectGroup::STATIC);
 
-    bola = new BolaDeFogo(window->CenterX(), 0, white);
-    scene->Add(bola, ObjectGroup::STATIC);
-    /*ifstream fin;
-    fin.open("Level1.txt");
-
-    fin >> posX;
-    while (!fin.eof())
-    {
-        if (fin.good())
-        {
-            // lê linha com informações da plataforma
-            fin >> posY; fin >> platType;
-            plat = new Platform(posX, posY, platType, white);
-            scene->Add(plat, STATIC);
-        }
-        else
-        {
-            // ignora comentários
-            fin.clear();
-            char temp[80];
-            fin.getline(temp, 80);
-        }
-
-        fin >> posX;
-    }
-    fin.close();
-    */
-
-    // ----------------------
-
-    // inicia com música
-    //GravityGuy::audio->Frequency(MUSIC, 0.94f);
-    //GravityGuy::audio->Frequency(TRANSITION, 1.0f);
-    //GravityGuy::audio->Play(MUSIC);
+    bola = new BolaDeFogo(window->CenterX(), 0, white,1);
+    scene->Add(bola, ObjectGroup::MOVING);
 }
 
 // ------------------------------------------------------------------------------

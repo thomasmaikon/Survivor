@@ -71,7 +71,7 @@ void Player::Reset()
 
 void Player::OnCollision(Object * obj)
 {
-
+/*
     if (obj->Type() == PLATFORM) { 
 
             isJumping = false;
@@ -100,7 +100,7 @@ void Player::OnCollision(Object * obj)
 
             
             
-    }
+    }*/
 }
 
 // ---------------------------------------------------------------------------------
@@ -109,9 +109,9 @@ void Player::Update()
 {
     //gravidade
     
-    Translate(0, 100 * gameTime);
+    //Translate(0, 100 * gameTime);
 
-    if (window->KeyPress(VK_UP))
+   /* if (window->KeyPress(VK_UP))
     {
         isJumping = true;
         //MoveTo(x, window->Height() - 60);
@@ -122,8 +122,29 @@ void Player::Update()
         }
         xapica = 0;
     }
+   */
+
+    if (window->KeyDown(VK_RIGHT))
+    {
+        Translate(300 * gameTime, 0);
+        GravityGuy::audio->Frequency(MOVINGPLAYER, 1.1f);
+    }
+
+    if (window->KeyDown(VK_LEFT))
+    {
+        Translate(-300 * gameTime, 0);
+        GravityGuy::audio->Frequency(MOVINGPLAYER, 0.9f);
+    }
+
+    if (window->KeyDown(VK_UP))
+    {
+        Translate(0,-300 * gameTime);
+    }
    
-   
+    if (window->KeyDown(VK_DOWN))
+    {
+        Translate(0, 300 * gameTime);
+    }
 
     //Translate(-100 * gameTime, 0);// empurrado para tras por nao fazer nada
     
