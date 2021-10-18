@@ -9,6 +9,7 @@
 //
 **********************************************************************************/
 
+
 #include "Player.h"
 #include "GravityGuy.h"
 #include "Platform.h"
@@ -17,7 +18,7 @@
 
 Player::Player()
 {
-    tileset = new TileSet("Resources/GravityGuy.png", 32, 48, 5, 10);
+    tileset = new TileSet("Resources/dino.png", 40, 48, 4, 8);
     anim = new Animation(tileset, 0.120f, true);
 
     // sequências de animação do player
@@ -147,7 +148,7 @@ void Player::Update()
         Translate(0, -jump * gameTime);
     }
         
-
+    
     // atualiza animação
     anim->Select(gravity);
     anim->NextFrame();

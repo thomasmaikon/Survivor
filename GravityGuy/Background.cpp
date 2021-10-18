@@ -16,31 +16,25 @@
 Background::Background(Color tint) : color(tint)
 {
     MoveTo(window->CenterX(), window->CenterY(), Layer::BACK);
-    xF = xB = x;
+    xF = x;
 
     // carrega imagens
-    imgF = new Image("Resources/BackgFront.png");
-    imgB = new Image("Resources/BackgBack.png");
+    imgF = new Image("Resources/BG.png");
 
     // cria sprites do plano de fundo
-    sky     = new Sprite("Resources/Sky.png");    
+ 
     backgF1 = new Sprite(imgF);
     backgF2 = new Sprite(imgF);
-    backgB1 = new Sprite(imgB);
-    backgB2 = new Sprite(imgB);
 }
 
 // ---------------------------------------------------------------------------------
 
 Background::~Background()
 {
-    delete imgF;
-    delete imgB;    
+    delete imgF;   
     delete backgF1;
     delete backgF2;
-    delete backgB1;
-    delete backgB2;
-    delete sky;
+
 }
 
 // -------------------------------------------------------------------------------
@@ -49,23 +43,14 @@ void Background::Update()
 {
     // move sprites com velocidades diferentes
     xF -= 200 * gameTime;
-    xB -= 150 * gameTime;
+
 }
 
 // -------------------------------------------------------------------------------
 
 void Background::Draw()
 {
-    // desenha pano de fundo
-    sky->Draw(window->CenterX(), window->CenterY(), Layer::BACK, 1.0f, 0.0f, color);
 
-    // desenha prédios mais distantes
-    backgB1->Draw(xB, y, Layer::LOWER, 1.0f, 0.0f, color);
-    backgB2->Draw(xB + imgB->Width(), y, Layer::LOWER, 1.0f, 0.0f, color);
-    
-    // traz pano de fundo de volta para dentro da tela
-    if (xB + imgB->Width()/2.0f < 0)
-        xB += imgB->Width();
 
     // desenha prédios mais próximos
     backgF1->Draw(xF, y, Layer::MIDDLE, 1.0f, 0.0f, color);
