@@ -32,6 +32,9 @@ private:
     Animation * anim;                   // animação do personagem
     uint        gravity;                // gravidade atuando sobre o jogador
     int         level;                  // nível finalizado
+    bool isJumping = false;
+    bool isCollided = false;
+    int jump;
     
 public:
     Player();                           // construtor

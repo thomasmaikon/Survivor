@@ -56,9 +56,6 @@ void Moeda::OnCollision(Object* obj) {
         isFirst = false;
         GravityGuy::audio->Play(GETCOIN);
         colided = true;
-        //Translate(x, y-50);
-        //Timer timer;
-        //timer.Elapsed(1.90f);
         MoveTo(LIMBOX, LIMBOY, z);
     }
 }

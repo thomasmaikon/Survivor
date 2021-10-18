@@ -40,6 +40,7 @@ Player::Player()
     type = PLAYER;
     // posição inicial
     MoveTo(window->CenterX(), 24.0f, Layer::FRONT);
+    jump = 0;
 }
 
 // ---------------------------------------------------------------------------------
@@ -65,7 +66,11 @@ void Player::Reset()
 
 void Player::OnCollision(Object * obj)
 {
-    if (obj->Type() == FINISH)
+    if (obj->Type() != COIN) {
+        MoveTo(x, obj->Y() - 32);
+    }
+
+   /*if (obj->Type() == FINISH)
     {
         // chegou ao final do nível
         level++;
@@ -74,12 +79,13 @@ void Player::OnCollision(Object * obj)
     {
         // mantém personagem em cima da plataforma
        // if (gravity == NORMAL)
-           MoveTo(x, obj->Y() - 32);
+           
         //else
          //   MoveTo(window->CenterX(), obj->Y() + 32);
-    }
+    }*/
 
-    
+    if (obj->Type() == PLATFORM) { isCollided = true; }
+    else{ isCollided = false; }
 
     // ----------------------------------------------------------
     // Processa teclas pressionadas
@@ -124,8 +130,20 @@ void Player::Update()
     if(window->KeyDown(VK_DOWN))
         Translate(0, 300 * gameTime);
 
-    if (window->KeyDown(VK_UP))
-        Translate(0, -300 * gameTime);
+    if ((window->KeyPress(VK_UP)|| isJumping) && isCollided) {
+            //altura testada e recomendada é 1100
+            if (jump <= 1200)
+            {
+                isJumping = true;
+                jump += 200;
+            }
+            else {
+                isJumping = false;
+                jump = 0;
+            }
+        Translate(0, -jump * gameTime);
+    }
+        
 
     // atualiza animação
     anim->Select(gravity);

@@ -1,2 +1,6 @@
-﻿  Player.cpp
+﻿  Level1.cpp
+C:\Users\thoma\Documents\Jogos\unidade_2\Lab18\GravityGuy\GravityGuy\Level1.cpp(59,60): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\thoma\Documents\Jogos\unidade_2\Lab18\GravityGuy\GravityGuy\Level1.cpp(50,17): warning C4101: 'posY': variável local não referenciada
+C:\Users\thoma\Documents\Jogos\unidade_2\Lab18\GravityGuy\GravityGuy\Level1.cpp(50,11): warning C4101: 'posX': variável local não referenciada
+C:\Users\thoma\Documents\Jogos\unidade_2\Lab18\GravityGuy\GravityGuy\Level1.cpp(51,11): warning C4101: 'platType': variável local não referenciada
   GravityGuy.vcxproj -> C:\Users\thoma\Documents\Jogos\unidade_2\Lab18\GravityGuy\Debug\GravityGuy.exe

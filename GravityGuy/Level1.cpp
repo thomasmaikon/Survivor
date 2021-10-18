@@ -56,7 +56,7 @@ void Level1::Init()
     scene->Add(moeda, ObjectGroup::STATIC);
     moeda = new Moeda(370, 300, white);
     scene->Add(moeda, ObjectGroup::STATIC);
-    plat = new Platform(window->CenterX(), window->Height()-16, 5, white);
+    plat = new Platform(window->CenterX(), window->Height()-16, 1, white);
     scene->Add(plat, ObjectGroup::STATIC);
     /*ifstream fin;
     fin.open("Level1.txt");
