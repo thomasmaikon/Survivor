@@ -20,6 +20,7 @@
 #include "Moeda.h"
 #include <string>
 #include <fstream>
+#include "Chao.h"
 using std::ifstream;
 using std::string;
 
@@ -46,7 +47,7 @@ void Level1::Init()
     // plataformas
     // ----------------------
 
-    Platform * plat;
+    Chao * chao;
     float posX, posY;
     uint  platType;
     Color white { 1,1,1,1 };
@@ -56,8 +57,8 @@ void Level1::Init()
     scene->Add(moeda, ObjectGroup::STATIC);
     moeda = new Moeda(370, 300, white);
     scene->Add(moeda, ObjectGroup::STATIC);
-    plat = new Platform(window->CenterX(), window->Height()-16, 1, white);
-    scene->Add(plat, ObjectGroup::STATIC);
+    chao = new Chao(window->CenterX(), window->Height()-16, white);
+    scene->Add(chao, ObjectGroup::STATIC);
     /*ifstream fin;
     fin.open("Level1.txt");
 
