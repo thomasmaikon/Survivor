@@ -29,11 +29,9 @@ class Platform : public Object
 private:
     Sprite * platform = nullptr;            // sprite da plataforma
     Color color;                            // cor da plataforma
-
+    uint level;
 public:
-    Platform(float posX, float posY, 
-             uint platType, 
-             Color tint);                   // construtor    
+    Platform(float posX, float posY, uint platType, Color tint, uint level); // construtor    
     ~Platform();                            // destrutor
 
     void Update();                          // atualização do objeto

@@ -10,22 +10,20 @@
 **********************************************************************************/
 
 #include "Platform.h"
+#include "Level1.h"
+#include "Level2.h"
 
 // ---------------------------------------------------------------------------------
 
-Platform::Platform(float posX, float posY, uint platType, Color tint) : color(tint)
+Platform::Platform(float posX, float posY, uint platType, Color tint, uint level) : color(tint)
 {
+    this->level = level;
     switch (platType)
     {
-    case SMALL:  platform = new Sprite("Resources/SmallGray.png"); type = SMALL; break;
-    case MEDIUM: platform = new Sprite("Resources/MediumGray.png"); type = MEDIUM; break;
-    case LARGE:  platform = new Sprite("Resources/LongGray.png"); type = LARGE; break;
-    case FINISH: platform = new Sprite("Resources/Finish.png"); type = FINISH; break;
-
-        case 5:
-        platform = new Sprite("Resources/chao.png");
-        type = PLATFORM;
-        break;
+    case MEDIUM:  platform = new Sprite("Resources/platformMedium.png"); type = MEDIUM; break;
+    case SMALL: platform = new Sprite("Resources/platformSmall.png"); type = SMALL; break;
+    //case LARGE:  platform = new Sprite("Resources/LongGray.png"); type = LARGE; break;
+    //case FINISH: platform = new Sprite("Resources/Finish.png"); type = FINISH; break;
     }
     
     BBox(new Rect(-platform->Width()/2.0f, 
@@ -48,8 +46,25 @@ Platform::~Platform()
 
 void Platform::Update()
 {
+    
     // move plataforma apenas no eixo x
-    //Translate(-200.0f * gameTime, 0);
+    Translate(-200.0f * gameTime, 0);
+   
+    if (x + platform->Width() < 0)
+    {
+        switch (level)
+        {
+        case 1:
+            Level1::scene->Delete();
+            break;
+        case 2:
+            Level2::scene->Delete();
+            break;
+        default:
+            break;
+        }
+    }
+
 }
 
 // -------------------------------------------------------------------------------

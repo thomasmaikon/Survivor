@@ -26,6 +26,7 @@ class Level1 : public Game
 {
 private:
     Background* backg = nullptr;   // pano de fundo animado
+    void inserirMoedaPlataforma(int posicaoInicial, int qtd);
 
 public:
     static Scene* scene;           // cena do nível

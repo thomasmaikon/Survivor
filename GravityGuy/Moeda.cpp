@@ -46,7 +46,7 @@ Moeda::~Moeda()
 void Moeda::Update()
 {
     // move plataforma apenas no eixo x
-    //Translate(-200.0f * gameTime, 0);
+    Translate(-200.0f * gameTime, 500.0f * gameTime);
     anim->NextFrame();
 }
 
@@ -60,6 +60,7 @@ void Moeda::OnCollision(Object* obj) {
         colided = true;
         //MoveTo(LIMBOX, LIMBOY, z);
     }
+    MoveTo(x, obj->Y() - 32, z);
 }
 
 // -------------------------------------------------------------------------------
