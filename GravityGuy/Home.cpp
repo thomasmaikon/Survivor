@@ -19,11 +19,8 @@
 void Home::Init()
 {
     backg = new Sprite("Resources/TitleScreen.png");
-    tileset = new TileSet("Resources/fly.png", 40, 32, 4, 4);
-    tileset2 = new TileSet("Resources/fly2.png", 40, 32, 4, 4);
-    anim = new Animation(tileset, 0.120f, true);
-    anim2 = new Animation(tileset2, 0.120f, true);
-
+    select = new Selector(Color{ 1,1,1,1 });
+    
     GravityGuy::audio->Play(MENU, true);
 }
 
@@ -31,25 +28,24 @@ void Home::Init()
 
 void Home::Update()
 {
-    // sai com o pressionar do ESC
-    if (window->KeyPress(VK_ESCAPE))
-        window->Close();
-
-    if (window->KeyPress(VK_UP)) {
-
-    }
-
     
-    // se a tecla ENTER for pressionada
-    if (window->KeyPress(VK_RETURN))
+    
+    switch (select->Position())
     {
+    case CONTROLLER::PLAY:
         GravityGuy::audio->Stop(MENU);
         GravityGuy::NextLevel<Level1>();
-    }
-    else
-    {
-        anim->NextFrame();
-        anim2->NextFrame();
+        break;
+
+    case CONTROLLER::SETTINGS:
+        break;
+
+    case CONTROLLER::EXIT:
+        window->Close();
+        break;
+    default:
+        select->Update();
+        break;
     }
 }
 
@@ -58,16 +54,14 @@ void Home::Update()
 void Home::Draw()
 {
     backg->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
-    anim2->Draw(480, 210);
-    anim->Draw(320, 210);
+    select->Draw();
 }
 
 // ------------------------------------------------------------------------------
 
 void Home::Finalize()
 {
-    delete anim;
-    delete tileset;
+    delete select;
     delete backg;
 }
 
