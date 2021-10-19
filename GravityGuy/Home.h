@@ -27,6 +27,8 @@ class Home : public Game
 private:
     Sprite * backg = nullptr;       // pano de fundo
     TileSet * tileset = nullptr;    // tileset da animação
+    TileSet* tileset2 = nullptr;    // tileset da animação
+    Animation* anim2 = nullptr;     // animação do menu
     Animation * anim = nullptr;     // animação do menu
 
 public:

@@ -19,8 +19,11 @@
 void Home::Init()
 {
     backg = new Sprite("Resources/TitleScreen.png");
-    tileset = new TileSet("Resources/PressEnter.png", 72, 48, 1, 5);
-    anim = new Animation(tileset, 0.180f, true);
+    tileset = new TileSet("Resources/fly.png", 40, 32, 4, 4);
+    tileset2 = new TileSet("Resources/fly2.png", 40, 32, 4, 4);
+    anim = new Animation(tileset, 0.120f, true);
+    anim2 = new Animation(tileset2, 0.120f, true);
+
     GravityGuy::audio->Play(MENU, true);
 }
 
@@ -31,6 +34,11 @@ void Home::Update()
     // sai com o pressionar do ESC
     if (window->KeyPress(VK_ESCAPE))
         window->Close();
+
+    if (window->KeyPress(VK_UP)) {
+
+    }
+
     
     // se a tecla ENTER for pressionada
     if (window->KeyPress(VK_RETURN))
@@ -41,6 +49,7 @@ void Home::Update()
     else
     {
         anim->NextFrame();
+        anim2->NextFrame();
     }
 }
 
@@ -49,7 +58,8 @@ void Home::Update()
 void Home::Draw()
 {
     backg->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
-    anim->Draw(545, 275);
+    anim2->Draw(480, 210);
+    anim->Draw(320, 210);
 }
 
 // ------------------------------------------------------------------------------
