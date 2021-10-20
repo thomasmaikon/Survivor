@@ -19,6 +19,7 @@
 void GameOver::Init()
 {
     title = new Sprite("Resources/GameOver.png");
+    GravityGuy::audio->Play(DEATH, true);
 }
 
 // ----------------------------------------------------------------------
@@ -26,7 +27,10 @@ void GameOver::Init()
 void GameOver::Update()
 {
     if (window->KeyPress(VK_ESCAPE) || window->KeyPress(VK_RETURN))
+    {
+        GravityGuy::audio->Stop(DEATH);
         GravityGuy::NextLevel<Home>();
+    }
 }
 
 // ----------------------------------------------------------------------

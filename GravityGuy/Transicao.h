@@ -1,16 +1,7 @@
-/**********************************************************************************
-// Home (Arquivo de Cabeçalho)
-// 
-// Criação:     14 Fev 2013
-// Atualização: 27 Set 2021
-// Compilador:  Visual C++ 2019
-//
-// Descrição:   Tela de abertura do jogo
-//
-**********************************************************************************/
+#pragma once
 
-#ifndef _GRAVITYGUY_HOME_H_
-#define _GRAVITYGUY_HOME_H_
+#ifndef _GRAVITYGUY_TRANSICAO_H_
+#define _GRAVITYGUY_TRANSICAO_H_
 
 // ------------------------------------------------------------------------------
 // Inclusões
@@ -19,16 +10,19 @@
 #include "Sprite.h"
 #include "TileSet.h"
 #include "Animation.h"
-#include "SeletorMenu.h"
+#include "SeletorTransicao.h"
 // ------------------------------------------------------------------------------
 
-class Home : public Game
+class Transicao : public Game
 {
 private:
-    Sprite * backg = nullptr;       // pano de fundo
-    SeletorMenu* select = nullptr;
+    Sprite* backg = nullptr;       // pano de fundo
+    SeletorTransicao* select = nullptr;
+    uint level;
 
 public:
+    Transicao();
+
     void Init();                    // inicia nível
     void Update();                  // atualiza lógica do jogo
     void Draw();                    // desenha jogo

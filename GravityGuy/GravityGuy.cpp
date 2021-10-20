@@ -31,9 +31,10 @@ void GravityGuy::Init()
     audio->Add(MENU, "Resources/sounds/menu.wav");
     audio->Add(MUSIC, "Resources/Music.wav");
     audio->Add(TRANSITION, "Resources/Transition.wav");
-    audio->Add(GETCOIN, "Resources/sounds/moeda_sound.wav",5);
+    audio->Add(GETCOIN, "Resources/sounds/moeda_sound.wav");
+    audio->Add(DEATH, "Resources/sounds/morte.wav");
     audio->Add(MOVINGPLAYER, "Resources/sounds/andando.wav");
-    audio->Add(FIRE, "Resources/sounds/fire.wav",15);
+    audio->Add(FIRE, "Resources/sounds/fire.wav");
 
     // bounding box não visível
     viewBBox = false;

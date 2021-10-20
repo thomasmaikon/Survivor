@@ -11,25 +11,27 @@
 #include "Animation.h"
 
 // ---------------------------------------------------------------------------------
-enum CONTROLLER {PLAY, SETTINGS, EXIT};
+enum CONTROLLERMENU {PLAY, SETTINGS, EXIT};
 
-class Selector : public Object
+#define QTDESCOLHASSELETOR 3
+
+class SeletorMenu : public Object
 {
 private:
     TileSet* tileset = nullptr;            // sprite da plataforma
     Animation* left;
     Animation* right;
     
-    uint espacamentoX[3];                         // contem o espacamento de cada elemento
-    uint posicaoY[3];                         // contem o espacamento de cada elemento
+    uint espacamentoX[QTDESCOLHASSELETOR];                         // contem o espacamento de cada elemento
+    uint posicaoY[QTDESCOLHASSELETOR];                         // contem o espacamento de cada elemento
     uint position;
 
     Color color;                            // cor da plataforma
     uint level;
 
 public:
-    Selector(Color tinta);                   // construtor    
-    ~Selector();                            // destrutor
+    SeletorMenu(Color tinta);                   // construtor    
+    ~SeletorMenu();                            // destrutor
 
     void Update();                          // atualização do objeto
     void Draw();                            // desenho do objeto

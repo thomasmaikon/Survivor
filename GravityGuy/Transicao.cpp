@@ -1,48 +1,41 @@
-/**********************************************************************************
-// Home (Código Fonte) 
-// 
-// Criação:     14 Fev 2013
-// Atualização: 27 Set 2021
-// Compilador:  Visual C++ 2019
-//
-// Descrição:   Tela de abertura do jogo
-//
-**********************************************************************************/
+#pragma once
 
 #include "Engine.h"
 #include "GravityGuy.h"
+#include "Transicao.h"
+#include "Level2.h"
 #include "Home.h"
-#include "Level1.h"
+
+Transicao::Transicao(){}
 
 // ------------------------------------------------------------------------------
 
-void Home::Init()
+void Transicao::Init()
 {
-    backg = new Sprite("Resources/TitleScreen.png");
-    select = new SeletorMenu(Color{ 1,1,1,1 });
-    
+    backg = new Sprite("Resources/transicao.png");
+    select = new SeletorTransicao(Color{ 1,1,1,1 });
+
     GravityGuy::audio->Play(MENU, true);
 }
 
 // ------------------------------------------------------------------------------
 
-void Home::Update()
+void Transicao::Update()
 {
-    
-    
+
+
     switch (select->Position())
     {
-    case CONTROLLERMENU::PLAY:
+    case TRANSICAONIVEL::CONTINUAR:
         GravityGuy::audio->Stop(MENU);
-        GravityGuy::NextLevel<Level1>();
+        GravityGuy::NextLevel<Level2>();
         break;
 
-    case CONTROLLERMENU::SETTINGS:
+    case TRANSICAONIVEL::RETORNARMENU:
+        //GravityGuy::audio->Play(MENU, true);
+        GravityGuy::NextLevel<Home>();
         break;
 
-    case CONTROLLERMENU::EXIT:
-        window->Close();
-        break;
     default:
         select->Update();
         break;
@@ -51,7 +44,7 @@ void Home::Update()
 
 // ------------------------------------------------------------------------------
 
-void Home::Draw()
+void Transicao::Draw()
 {
     backg->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
     select->Draw();
@@ -59,7 +52,7 @@ void Home::Draw()
 
 // ------------------------------------------------------------------------------
 
-void Home::Finalize()
+void Transicao::Finalize()
 {
     delete select;
     delete backg;

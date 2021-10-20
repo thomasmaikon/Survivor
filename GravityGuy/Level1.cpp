@@ -24,7 +24,7 @@
 #include "BolaDeFogo.h"
 #include <random>
 #include "Chegada.h"
-
+#include "Transicao.h"
 using namespace std;
 
 using std::ifstream;
@@ -151,7 +151,7 @@ void Level1::Init()
     Chegada* chegada = new Chegada(6910,0, white,1);
     scene->Add(chegada, ObjectGroup::MOVING);
 
-    this->inserirBolasDeFogo(6335, 100);
+    this->inserirBolasDeFogo(6335, 40);
 }
 
 // ------------------------------------------------------------------------------
@@ -173,7 +173,7 @@ void Level1::Update()
     }
     else if (GravityGuy::player->Level() == 1 || window->KeyPress('N'))
     {
-        GravityGuy::NextLevel<Level2>();
+        GravityGuy::NextLevel<Transicao>();
     }
     else
     {
