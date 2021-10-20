@@ -25,10 +25,23 @@ bool    GravityGuy::viewBBox = false;
 float    GravityGuy::efeito = 1.0f;
 float    GravityGuy::musica = 1.0f;
 
+Font* GravityGuy::titleFont = nullptr;     // fonte do título 
+Font* GravityGuy::gameFont = nullptr;     // fonte do jogo
+Font* GravityGuy::sysFont = nullptr;     // fonte padrão
+
 // ------------------------------------------------------------------------------
 
 void GravityGuy::Init() 
 {
+
+    titleFont = new Font("Resources/Bauhaus72.png");
+    titleFont->Spacing("Resources/Bauhaus72.dat");
+
+    gameFont = new Font("Resources/Tahoma16.png");
+    gameFont->Spacing("Resources/Tahoma16.dat");
+
+    sysFont = new Font("Resources/Tahoma10.png");
+    sysFont->Spacing("Resources/Tahoma10.dat");
 
 
     // cria sistema de áudio

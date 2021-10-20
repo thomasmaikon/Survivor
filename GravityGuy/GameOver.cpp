@@ -38,6 +38,7 @@ void GameOver::Update()
 
 void GameOver::Draw()
 {
+    GravityGuy::sysFont->Draw(window->CenterX() - 40, 350, "Pressione [ENTER]", Color(0.9F, 0.9f, 0.0f, 1.0f), Layer::FRONT, 0.8f);
     title->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
 }
 

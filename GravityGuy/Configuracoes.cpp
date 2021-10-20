@@ -1,6 +1,7 @@
 #include "Configuracoes.h"
 #include "GravityGuy.h"
 #include "Home.h"
+#include <sstream>
 //-------------------------------------------------------------------------------
 
 Configuracoes::Configuracoes(){}
@@ -48,13 +49,13 @@ void Configuracoes::Update()
         if (window->KeyDown(VK_RIGHT))
         {
             efeito += 0.5f * gameTime;
-            if (musica > 2) { musica = 2; }
+            if (efeito > 2) { efeito = 2; }
         }
 
         if (window->KeyDown(VK_LEFT))
         {
             efeito -= 0.5f * gameTime;
-            if (musica < 0) { musica = 0; }
+            if (efeito < 0) { efeito = 0; }
         }
         break;
 
@@ -75,14 +76,27 @@ void Configuracoes::Update()
 
 void Configuracoes::Draw()
 {
-    
+    std::stringstream ss;
+
+    GravityGuy::titleFont->Draw(window->CenterX()-150, 80, "Sound Control", Color(0.9f, 0.9f, 0.0f, 1.0f), Layer::FRONT, 0.8f);
+    GravityGuy::gameFont->Draw(window->CenterX()-15, 300, "Retrun", Color(1.0, 1.0f, 1.0f, 1.0f),Layer::FRONT, 0.8f);
+
     select->Draw();
+    
+    ss.str("");
+    ss << "Musica: " << musica;
+
     barra->Draw(window->CenterX(), 200);
     nivel->Draw(window->CenterX() - 134 + musica * 134, 200);
+    GravityGuy::sysFont->Draw(window->CenterX()-15, 180, ss.str().c_str() , Color(1.0, 1.0f, 1.0f, 1.0f), Layer::FRONT, 0.8f);
+
+    ss.str("");
+    ss << "Efeito: " << efeito;
 
     barra->Draw(window->CenterX(), 245);
     nivel->Draw(window->CenterX() - 134 + efeito * 134, 245);
     
+    GravityGuy::sysFont->Draw(window->CenterX() -15, 230, ss.str().c_str(), Color(1.0, 1.0f, 1.0f, 1.0f), Layer::FRONT, 0.8f);
 
 }
 

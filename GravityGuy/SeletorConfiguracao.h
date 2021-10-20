@@ -21,6 +21,9 @@ private:
     Animation* left;
     Animation* right;
 
+    Animation* birdLeft;
+    Animation* birdRight;
+
     uint espacamentoX[QTDESCOLHACONFIG];                         // contem o espacamento de cada elemento
     uint posicaoY[QTDESCOLHACONFIG];                         // contem o espacamento de cada elemento
     uint position;

@@ -18,7 +18,7 @@
 #include "Audio.h"
 #include "Player.h"
 #include "Resources.h"
-
+#include "Font.h"
 // ------------------------------------------------------------------------------
 
 enum Sounds {MENU, MUSIC, TRANSITION, GETCOIN, MOVINGPLAYER, FIRE, DEATH, TESTSOUNDMUSIC, TESTSOUNDEFFECT};
@@ -33,6 +33,10 @@ public:
     static Player * player;         // jogador 
     static Audio * audio;           // sistema de áudio
     static bool viewBBox;           // estado da bounding box
+
+    static Font* titleFont;     // fonte do título 
+    static Font* gameFont;     // fonte do jogo
+    static Font* sysFont;     // fonte padrão
 
     static float musica;
     static float efeito;

@@ -18,18 +18,34 @@ SeletorConfiguracao::SeletorConfiguracao(Color tinta) : color(tinta)
 {
     espacamentoX[TYPE::MUSICA] = 150;
     espacamentoX[TYPE::EFEITO] = 150;
+    espacamentoX[TYPE::RETORNAR] = 100;
 
+    posicaoY[TYPE::MUSICA] = 195;
+    posicaoY[TYPE::EFEITO] = 240;
+    posicaoY[TYPE::RETORNAR] = 295;
 
-    posicaoY[TYPE::MUSICA] = 200;
-    posicaoY[TYPE::EFEITO] = 245;
-
-
-
-    tileset = new TileSet("Resources/fly.png", 40, 32, 4, 4);
+    // configurando box do + e - para som
+    tileset = new TileSet("Resources/menos.png", 40, 32, 4, 4);
     left = new Animation(tileset, 0.05f, true);
 
-    tileset = new TileSet("Resources/fly2.png", 40, 32, 4, 4);
+    tileset = new TileSet("Resources/mais.png", 40, 32, 4, 4);
     right = new Animation(tileset, 0.05f, true);
+    
+    // configurando box dos passaros para retorno
+    tileset = new TileSet("Resources/fly.png", 40, 32, 4, 4);
+    birdLeft = new Animation(tileset, 0.05f, true);
+
+    tileset = new TileSet("Resources/fly2.png", 40, 32, 4, 4);
+    birdRight = new Animation(tileset, 0.05f, true);
+
+
+    uint amarelo[1] = { 0 };
+    uint vermelho[1] = { 1 };
+    left->Add(1, vermelho, 1); // adiciona a cor vermelha
+    left->Add(0, amarelo, 1); // adiciona a cor amarela
+    
+    right->Add(1, vermelho,1);// vermelho
+    right->Add(0, amarelo, 1); // amarelo
 
     left->Draw(window->CenterX() - espacamentoX[TYPE::MUSICA], posicaoY[TYPE::MUSICA], Layer::FRONT);
 
@@ -46,6 +62,8 @@ SeletorConfiguracao::~SeletorConfiguracao()
     delete tileset;
     delete left;
     delete right;
+    delete birdLeft;
+    delete birdRight;
 }
 
 // -------------------------------------------------------------------------------
@@ -61,17 +79,44 @@ void SeletorConfiguracao::Update()
         position = (position + 1) % QTDESCOLHACONFIG;
     }
 
+    if (position != TYPE::RETORNAR) // so altera a cor se estiver no local correto
+    {
+        if (window->KeyDown(VK_LEFT)) 
+            left->Select(1);
+        else 
+            left->Select(0);
+
+        if (window->KeyDown(VK_RIGHT)) 
+            right->Select(1);
+        else 
+            right->Select(0);
+
+        left->NextFrame();
+        right->NextFrame();
+    }else
+    {
+        birdLeft->NextFrame();
+        birdRight->NextFrame();
+    }
+
     // move plataforma apenas no eixo x
-    left->NextFrame();
-    right->NextFrame();
+    
 }
 
 // -------------------------------------------------------------------------------
 
 void SeletorConfiguracao::Draw()
 {
-    left->Draw(window->CenterX() - espacamentoX[position], posicaoY[position], z);
-    right->Draw(window->CenterX() + espacamentoX[position], posicaoY[position], z);
+    if(position != TYPE::RETORNAR)
+    {
+        left->Draw(window->CenterX() - espacamentoX[position], posicaoY[position], z);
+        right->Draw(window->CenterX() + espacamentoX[position], posicaoY[position], z);
+    }
+    else {
+        birdLeft->Draw(window->CenterX() - espacamentoX[position], posicaoY[position], z);
+        birdRight->Draw(window->CenterX() + espacamentoX[position], posicaoY[position], z);
+    }
+    
 }
 
 // -------------------------------------------------------------------------------
