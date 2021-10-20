@@ -11,7 +11,8 @@
 
 #include "Chegada.h"
 #include "Level1.h"
-
+#include "GravityGuy.h"
+#include "Transicao.h"
 // ---------------------------------------------------------------------------------
 
 Chegada::Chegada(float posX, float posY, Color tinta, uint level) : color(tinta)
@@ -51,6 +52,11 @@ void Chegada::OnCollision(Object* obj)
 {
     if (obj->Type() == PLATFORM)
         MoveTo(x, obj->Y() - 50, z);
+
+    if (obj->Type() == PLAYER) 
+    {
+        GravityGuy::player->level = level;
+    }
 }
 
 // -------------------------------------------------------------------------------

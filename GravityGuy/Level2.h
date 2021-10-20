@@ -19,7 +19,9 @@
 #include "Scene.h"
 #include "Player.h"
 #include "Background.h"
+#include <sstream>
 
+using namespace std;
 // ------------------------------------------------------------------------------
 
 class Level2 : public Game
@@ -29,11 +31,15 @@ private:
 
 public:
     static Scene* scene;           // cena do nível
+    stringstream score;
 
     void Init();                    // inicialização do nível
     void Update();                  // atualiza lógica do jogo
     void Draw();                    // desenha jogo
     void Finalize();                // finalização do nível
+
+    void inserirMoedaPlataforma(int posicaoInicial, int qtd, int level);
+    void inserirBolasDeFogo(int posicaoFinal, int qtd, int level);
 };
 
 // -----------------------------------------------------------------------------

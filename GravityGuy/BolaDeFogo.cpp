@@ -12,6 +12,7 @@
 #include "BolaDeFogo.h"
 #include "Timer.h"
 #include "Level1.h"
+#include "Level2.h"
 #include <random>
 // ---------------------------------------------------------------------------------
 
@@ -95,6 +96,9 @@ void BolaDeFogo::Update()
             default:
             case 1:
                 Level1::scene->Delete();
+                break;
+            case 2:
+                Level2::scene->Delete();
                 break;
             }
         }

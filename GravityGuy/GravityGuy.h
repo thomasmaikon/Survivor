@@ -21,7 +21,7 @@
 #include "Font.h"
 // ------------------------------------------------------------------------------
 
-enum Sounds {MENU, MUSIC, TRANSITION, GETCOIN, MOVINGPLAYER, FIRE, DEATH, TESTSOUNDMUSIC, TESTSOUNDEFFECT};
+enum Sounds {MENU, MUSIC, TRANSITION, GETCOIN, MOVINGPLAYER, FIRE, DEATH, DUNGEON,TESTSOUNDMUSIC, TESTSOUNDEFFECT};
     
 // ------------------------------------------------------------------------------
 class GravityGuy : public Game

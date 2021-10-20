@@ -54,6 +54,8 @@ void GravityGuy::Init()
     audio->Add(MOVINGPLAYER, "Resources/sounds/andando.wav");
     audio->Add(FIRE, "Resources/sounds/fire.wav");
 
+    audio->Add(DUNGEON, "Resources/sounds/dungeon.wav");
+
     audio->Add(TESTSOUNDMUSIC, "Resources/sounds/musicaTeste.wav");
     audio->Add(TESTSOUNDEFFECT, "Resources/sounds/fire.wav");
 

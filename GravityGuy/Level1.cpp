@@ -25,7 +25,8 @@
 #include <random>
 #include "Chegada.h"
 #include "Transicao.h"
-using namespace std;
+
+
 
 using std::ifstream;
 using std::string;
@@ -39,11 +40,15 @@ Scene * Level1::scene = nullptr;
 
 void Level1::Init()
 {
+    score << std::fixed;
+
+    GravityGuy::player->score = 0;
+    
     // cria gerenciador de cena
     scene = new Scene();
 
     // pano de fundo do jogo
-    backg = new Background(Color{ 1,1,1,1 });
+    backg = new Background(Color{ 1,1,1,1 }, 1);
     scene->Add(backg, STATIC);
 
     // adiciona jogador na cena
@@ -62,10 +67,6 @@ void Level1::Init()
     chao = new Chao(window->CenterX(), window->Height()-16, white);
     scene->Add(chao, ObjectGroup::STATIC);
 
-    //bola = new BolaDeFogo(window->CenterX(), 0, white,1);
-    //scene->Add(bola, ObjectGroup::MOVING);
-
-    
     ifstream fin;
     fin.open("Level1.txt");
 
@@ -151,7 +152,10 @@ void Level1::Init()
     Chegada* chegada = new Chegada(6910,0, white,1);
     scene->Add(chegada, ObjectGroup::MOVING);
 
-    this->inserirBolasDeFogo(6335, 40);
+    //this->inserirBolasDeFogo(6335, 40);
+
+    GravityGuy::audio->Play(DUNGEON, true);
+    GravityGuy::audio->Volume(DUNGEON, GravityGuy::musica);
 }
 
 // ------------------------------------------------------------------------------
@@ -160,19 +164,20 @@ void Level1::Update()
 {
     if (window->KeyPress(VK_ESCAPE))
     {
-        GravityGuy::audio->Stop(MUSIC);
-        GravityGuy::NextLevel<Home>();
+        GravityGuy::audio->Stop(DUNGEON);
         GravityGuy::player->Reset();
+        GravityGuy::NextLevel<Home>();
     }
     else if (GravityGuy::player->Bottom() < 0 || GravityGuy::player->Top() > window->Height())
     {
-        GravityGuy::audio->Stop(MUSIC);
+        GravityGuy::audio->Stop(DUNGEON);
         GravityGuy::audio->Stop(MOVINGPLAYER);
-        GravityGuy::NextLevel<GameOver>();
         GravityGuy::player->Reset();
+        GravityGuy::NextLevel<GameOver>();
     }
     else if (GravityGuy::player->Level() == 1 || window->KeyPress('N'))
     {
+        GravityGuy::audio->Stop(DUNGEON);
         GravityGuy::NextLevel<Transicao>();
     }
     else
@@ -186,11 +191,17 @@ void Level1::Update()
 
 void Level1::Draw()
 {
+    
     backg->Draw();
     scene->Draw();
+    
+    score.str("");
+    score << "Score: "  << GravityGuy::player->score;
+    GravityGuy::gameFont->Draw(30, 30, score.str(), Color{1.0f,1.0f,1.0f,1.0f});
 
     if (GravityGuy::viewBBox)
         scene->DrawBBox();
+
 }
 
 // ------------------------------------------------------------------------------

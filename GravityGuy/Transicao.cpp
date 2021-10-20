@@ -46,6 +46,10 @@ void Transicao::Update()
 
 void Transicao::Draw()
 {
+    score.str("");
+    score << "Score: " << GravityGuy::player->score;
+    GravityGuy::gameFont->Draw(30, 30, score.str(), Color{ 1.0f,1.0f,1.0f,1.0f });
+
     backg->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
     select->Draw();
 }

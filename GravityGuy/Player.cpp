@@ -18,6 +18,8 @@
 
 Player::Player()
 {
+    score = 0;
+
     tileset = new TileSet("Resources/dino.png", 40, 48, 4, 8);
     anim = new Animation(tileset, 0.120f, true);
 
@@ -33,7 +35,7 @@ Player::Player()
         -1.0f * tileset->TileWidth() / 2.0f,
         -1.0f * tileset->TileHeight() / 2.0f,
         tileset->TileWidth() / 2.0f,
-        tileset->TileHeight() / 2.0f));
+        (tileset->TileHeight() / 2.0f)-10));
     
     // inicializa estado do player
     typeAnim = CAINDO;
@@ -46,6 +48,7 @@ Player::Player()
 
     platformCollided = false;
     soundControllerMove = true;
+    colidiu = false;
 }
 
 // ---------------------------------------------------------------------------------
@@ -61,9 +64,11 @@ Player::~Player()
 void Player::Reset()
 {
     // volta ao estado inicial
-    MoveTo(window->CenterX(), 24.0f, Layer::FRONT);
+    MoveTo(window->CenterX(), window->Height() - 120.0f, Layer::FRONT);
     typeAnim = CAINDO;
     level = 0;
+    score = 0;
+    isJumping = false;
 }
 
 
@@ -71,13 +76,11 @@ void Player::Reset()
 
 void Player::OnCollision(Object * obj)
 {
-/*
-    if (obj->Type() == PLATFORM) { 
 
-            isJumping = false;
-
+    if (obj->Type() == PLATFORM) {  
+        colidiu = true;
             if(!isJumping)
-                MoveTo(x, obj->Y() - 32);
+                MoveTo(x, obj->Y() - 30);
 
             platformCollided = true;
             if (soundControllerMove) {
@@ -97,10 +100,14 @@ void Player::OnCollision(Object * obj)
                 Translate(-150 * gameTime, 0);
                 GravityGuy::audio->Frequency(MOVINGPLAYER, 0.9f);
             }
-
-            
-            
-    }*/
+            if(window->KeyPress(VK_UP))
+            {
+                isJumping = true;
+            }
+       
+    }
+    if (obj->Type() == ListTypes::COIN)
+        ++score;
 }
 
 // ---------------------------------------------------------------------------------
@@ -108,22 +115,27 @@ void Player::OnCollision(Object * obj)
 void Player::Update()
 {
     //gravidade
-    
-    //Translate(0, 100 * gameTime);
+    Translate(0, 100 * gameTime);
 
-   /* if (window->KeyPress(VK_UP))
-    {
-        isJumping = true;
-        //MoveTo(x, window->Height() - 60);
-        int xapica = 0;
-        while(xapica < 150 ){
-        Translate(50 * gameTime, -500 * gameTime);
-        xapica += 1;
-        }
-        xapica = 0;
-    }
-   */
-
+   if(isJumping)
+   {
+       if (jump != 10)
+       {
+           ++jump;
+           Translate(50 * gameTime, -500 * gameTime);
+           colidiu = false;
+       }
+       else if(!colidiu)
+       {
+           Translate(50 * gameTime, 0);
+       }
+       else {
+           jump = 0;
+           isJumping = false;
+       }
+   }
+  
+    /*
     if (window->KeyDown(VK_RIGHT))
     {
         Translate(300 * gameTime, 0);
@@ -139,7 +151,7 @@ void Player::Update()
     if (window->KeyDown(VK_UP))
     {
         Translate(0,-300 * gameTime);
-    }
+    }*/
    
     if (window->KeyDown(VK_DOWN))
     {

@@ -11,6 +11,8 @@
 #include "TileSet.h"
 #include "Animation.h"
 #include "SeletorTransicao.h"
+#include <sstream>
+using namespace std;
 // ------------------------------------------------------------------------------
 
 class Transicao : public Game
@@ -27,6 +29,7 @@ public:
     void Update();                  // atualiza lógica do jogo
     void Draw();                    // desenha jogo
     void Finalize();                // finaliza nível
+    stringstream score;
 };
 
 // -----------------------------------------------------------------------------

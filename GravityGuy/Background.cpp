@@ -13,14 +13,24 @@
 
 // ---------------------------------------------------------------------------------
 
-Background::Background(Color tint) : color(tint)
+Background::Background(Color tint,int level) : color(tint)
 {
     MoveTo(window->CenterX(), window->CenterY(), Layer::BACK);
     xF = x;
 
     // carrega imagens
-    imgF = new Image("Resources/BG.png");
-
+    switch (level)
+    {
+    case 1:
+        imgF = new Image("Resources/BG.png");
+        break;
+    case 2:
+        imgF = new Image("Resources/BG2.png");
+        break;
+    default:
+        imgF = new Image("Resources/BG.png");
+        break;
+    }
     // cria sprites do plano de fundo
  
     backgF1 = new Sprite(imgF);

@@ -30,7 +30,7 @@ private:
     Color color;                        // cor do pano de fundo
 
 public:
-    Background(Color tint);             // construtor
+    Background(Color tint, int level);             // construtor
     ~Background();                      // destrutor
 
     void Update();                      // atualização do objeto

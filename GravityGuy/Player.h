@@ -31,7 +31,8 @@ private:
     TileSet   * tileset;                // folha de sprites do personagem
     Animation * anim;                   // animação do personagem
     uint        typeAnim;                // gravidade atuando sobre o jogador
-    int         level;                  // nível finalizado
+   
+    bool colidiu;
     
     bool isJumping;
     bool platformCollided;
@@ -50,6 +51,9 @@ public:
     void OnCollision(Object * obj);     // resolução da colisão
     void Update();                      // atualização do objeto
     void Draw();                        // desenho do objeto
+
+    int score;
+    int level;                  // nível finalizado
 };
 
 // ---------------------------------------------------------------------------------
