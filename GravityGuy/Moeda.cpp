@@ -33,6 +33,8 @@ Moeda::Moeda(float posX, float posY, Color tinta, uint level) : color(tinta)
     MoveTo(posX, posY, Layer::FRONT);
     anim->Select(0);
     type = COIN;
+
+    GravityGuy::audio->Volume(GETCOIN, GravityGuy::efeito);
 }
 
 // ---------------------------------------------------------------------------------

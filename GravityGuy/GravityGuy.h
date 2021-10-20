@@ -21,10 +21,9 @@
 
 // ------------------------------------------------------------------------------
 
-enum Sounds {MENU, MUSIC, TRANSITION, GETCOIN, MOVINGPLAYER, FIRE, DEATH};
-
+enum Sounds {MENU, MUSIC, TRANSITION, GETCOIN, MOVINGPLAYER, FIRE, DEATH, TESTSOUNDMUSIC, TESTSOUNDEFFECT};
+    
 // ------------------------------------------------------------------------------
-
 class GravityGuy : public Game
 {
 private:
@@ -34,6 +33,9 @@ public:
     static Player * player;         // jogador 
     static Audio * audio;           // sistema de áudio
     static bool viewBBox;           // estado da bounding box
+
+    static float musica;
+    static float efeito;
 
     void Init();                    // inicializa jogo
     void Update();                  // atualiza lógica do jogo

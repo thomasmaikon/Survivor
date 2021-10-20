@@ -22,10 +22,15 @@ Player* GravityGuy::player = nullptr;
 Audio*  GravityGuy::audio = nullptr;
 bool    GravityGuy::viewBBox = false;
 
+float    GravityGuy::efeito = 1.0f;
+float    GravityGuy::musica = 1.0f;
+
 // ------------------------------------------------------------------------------
 
 void GravityGuy::Init() 
 {
+
+
     // cria sistema de áudio
     audio = new Audio();
     audio->Add(MENU, "Resources/sounds/menu.wav");
@@ -35,6 +40,9 @@ void GravityGuy::Init()
     audio->Add(DEATH, "Resources/sounds/morte.wav");
     audio->Add(MOVINGPLAYER, "Resources/sounds/andando.wav");
     audio->Add(FIRE, "Resources/sounds/fire.wav");
+
+    audio->Add(TESTSOUNDMUSIC, "Resources/sounds/musicaTeste.wav");
+    audio->Add(TESTSOUNDEFFECT, "Resources/sounds/fire.wav");
 
     // bounding box não visível
     viewBBox = false;

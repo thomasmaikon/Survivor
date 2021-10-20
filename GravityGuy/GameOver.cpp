@@ -19,6 +19,7 @@
 void GameOver::Init()
 {
     title = new Sprite("Resources/GameOver.png");
+    GravityGuy::audio->Volume(DEATH, GravityGuy::musica);
     GravityGuy::audio->Play(DEATH, true);
 }
 

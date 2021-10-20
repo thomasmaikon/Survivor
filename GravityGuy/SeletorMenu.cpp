@@ -26,10 +26,10 @@ SeletorMenu::SeletorMenu(Color tinta) : color(tinta)
 
 
     tileset = new TileSet("Resources/fly.png", 40, 32, 4, 4);
-    left = new Animation(tileset, 0.05f, true);
+    left = new Animation(tileset, 0.1f, true);
     
     tileset = new TileSet("Resources/fly2.png", 40, 32, 4, 4);
-    right = new Animation(tileset, 0.05f, true);
+    right = new Animation(tileset, 0.1f, true);
 
     left->Draw(window->CenterX() - espacamentoX[CONTROLLERMENU::PLAY], posicaoY[CONTROLLERMENU::PLAY], Layer::FRONT);
     

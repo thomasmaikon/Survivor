@@ -26,11 +26,6 @@ BolaDeFogo::BolaDeFogo(float posX, float posY, Color tinta, uint level) : color(
     anim->Add(DOWN, caindo, 5);
     anim->Add(COLLIDED, bateu, 3);
 
-    /*BBox(new Rect(
-        -1.0f * bolaDeFogo->TileWidth() / 2.0f,
-        -1.0f * bolaDeFogo->TileHeight() / 2.0f,
-        bolaDeFogo->TileWidth() / 2.0f,
-        bolaDeFogo->TileHeight() / 2.0f));*/
     BBox(new Circle(12.0f));
 
     MoveTo(posX, posY, Layer::FRONT);
@@ -39,6 +34,8 @@ BolaDeFogo::BolaDeFogo(float posX, float posY, Color tinta, uint level) : color(
     type = ListTypes::ENEMY;
     
     isOut = (posX <= 850) ? false : true;
+
+    GravityGuy::audio->Volume(FIRE, GravityGuy::efeito);
 }
 
 

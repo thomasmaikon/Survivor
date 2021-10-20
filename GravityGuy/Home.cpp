@@ -13,6 +13,7 @@
 #include "GravityGuy.h"
 #include "Home.h"
 #include "Level1.h"
+#include "Configuracoes.h"
 
 // ------------------------------------------------------------------------------
 
@@ -21,6 +22,7 @@ void Home::Init()
     backg = new Sprite("Resources/TitleScreen.png");
     select = new SeletorMenu(Color{ 1,1,1,1 });
     
+    GravityGuy::audio->Volume(MENU, GravityGuy::musica);
     GravityGuy::audio->Play(MENU, true);
 }
 
@@ -38,6 +40,8 @@ void Home::Update()
         break;
 
     case CONTROLLERMENU::SETTINGS:
+        GravityGuy::audio->Stop(MENU);
+        GravityGuy::NextLevel<Configuracoes>();
         break;
 
     case CONTROLLERMENU::EXIT:
