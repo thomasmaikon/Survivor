@@ -12,6 +12,7 @@
 #include "BolaDeFogo.h"
 #include "Timer.h"
 #include "Level1.h"
+#include <random>
 // ---------------------------------------------------------------------------------
 
 BolaDeFogo::BolaDeFogo(float posX, float posY, Color tinta, uint level) : color(tinta)
@@ -25,16 +26,19 @@ BolaDeFogo::BolaDeFogo(float posX, float posY, Color tinta, uint level) : color(
     anim->Add(DOWN, caindo, 5);
     anim->Add(COLLIDED, bateu, 3);
 
-    BBox(new Rect(
+    /*BBox(new Rect(
         -1.0f * bolaDeFogo->TileWidth() / 2.0f,
         -1.0f * bolaDeFogo->TileHeight() / 2.0f,
         bolaDeFogo->TileWidth() / 2.0f,
-        bolaDeFogo->TileHeight() / 2.0f));
+        bolaDeFogo->TileHeight() / 2.0f));*/
+    BBox(new Circle(12.0f));
 
     MoveTo(posX, posY, Layer::FRONT);
    
     anim->Select(DOWN);
-    type = COIN;
+    type = ListTypes::ENEMY;
+    
+    isOut = (posX <= 850) ? false : true;
 }
 
 
@@ -42,7 +46,7 @@ BolaDeFogo::BolaDeFogo(float posX, float posY, Color tinta, uint level) : color(
 // ---------------------------------------------------------------------------------
 
 BolaDeFogo::~BolaDeFogo() {
-    delete bolaDeFogo;
+    delete bolaDeFogo;  
     delete anim;
 }
 
@@ -51,7 +55,7 @@ BolaDeFogo::~BolaDeFogo() {
 
 void BolaDeFogo::OnCollision(Object* obj) 
 {
-    if (isFirst) {
+    if (isFirst && (obj->Type() == ListTypes::PLAYER || obj->Type() == ListTypes::PLATFORM)) { // evita que ele colida com ele mesmo e so colida com player e plataforma
         isFirst = false;
         GravityGuy::audio->Play(FIRE); 
         anim->Select(EXPLOSION::COLLIDED);
@@ -71,19 +75,31 @@ void BolaDeFogo::Draw()
 
 void BolaDeFogo::Update()
 {
-    // \gravidade 
-    Translate(0, 200 * gameTime);
-
-    anim->NextFrame();
-    short endFrame = 7;
-    if (collided && anim->Frame() == endFrame)
+    Translate(-200 * gameTime, 0);
+    if (x >= 0 && x <= 800) 
     {
-        switch (level)
+        if(isOut)
         {
-        default:
-        case 1:
-            Level1::scene->Delete();
-            break;
+            std::random_device rd;
+            std::mt19937 mt(rd());
+            std::uniform_int_distribution<int> dist(200, 800); // para o caso de algum objeto estar fora da tela antes de entrar
+            isOut = false;
+            MoveTo(dist(mt), 0, z);
+        }
+        //gravidade 
+        Translate(0, 200 * gameTime);
+
+        anim->NextFrame();
+        short endFrame = 7;
+        if (collided && anim->Frame() == endFrame)
+        {
+            switch (level)
+            {
+            default:
+            case 1:
+                Level1::scene->Delete();
+                break;
+            }
         }
     }
 }

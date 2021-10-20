@@ -22,11 +22,13 @@ Moeda::Moeda(float posX, float posY, Color tinta, uint level) : color(tinta)
     moeda = new TileSet("Resources/moeda.png", 32, 32, 8, 8);
     anim = new Animation(moeda, 0.05f, true);
 
-    BBox(new Rect(
-        -1.0f * moeda->TileWidth() / 2.0f,
-        -1.0f * moeda->TileHeight() / 2.0f,
-        moeda->TileWidth() / 2.0f,
-        moeda->TileHeight() / 2.0f));
+    /*BBox(new Rect(
+        (-1.0f * moeda->TileWidth() / 2.0f )+10,
+        (-1.0f * moeda->TileHeight() / 2.0f),
+        (moeda->TileWidth() / 2.0f)-10,
+        (moeda->TileHeight() / 2.0f)-10));*/
+    
+    BBox(new Circle(16.0f));
 
     MoveTo(posX, posY, Layer::FRONT);
     anim->Select(0);
@@ -60,7 +62,8 @@ void Moeda::OnCollision(Object* obj) {
         colided = true;
         //MoveTo(LIMBOX, LIMBOY, z);
     }
-    MoveTo(x, obj->Y() - 32, z);
+    if(obj->Type() == ListTypes::PLATFORM)
+        MoveTo(x, obj->Y() - 26, z);
 }
 
 // -------------------------------------------------------------------------------

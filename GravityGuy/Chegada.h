@@ -2,31 +2,27 @@
 
 
 
-#ifndef _GRAVITYGUY_BOLADEFOGO_H_
-#define _GRAVITYGUY_BOLADEFOGO_H_
+#ifndef _GRAVITYGUY_CHEGADA_H_
+#define _GRAVITYGUY_CHEGADA_H_
 
 #include "GravityGuy.h"
 #include "Object.h"
 #include "TileSet.h"
 #include "Animation.h"
 
-enum EXPLOSION{DOWN, COLLIDED};
 // ---------------------------------------------------------------------------------
 
-class BolaDeFogo : public Object
+class Chegada : public Object
 {
 private:
-    TileSet* bolaDeFogo = nullptr;            // sprite da plataforma
+    TileSet* chegada = nullptr;            // sprite da plataforma
     Animation* anim;
     Color color;                            // cor da plataforma
-    bool collided = false;
-    bool isFirst = true;
-    bool isOut;
     uint level;
 
 public:
-    BolaDeFogo(float posX, float posY, Color tinta, uint level);                   // construtor    
-    ~BolaDeFogo();                            // destrutor
+    Chegada(float posX, float posY, Color tinta, uint level);                   // construtor    
+    ~Chegada();                            // destrutor
 
     void OnCollision(Object* obj);           // resolução da colisão
     void Update();                          // atualização do objeto

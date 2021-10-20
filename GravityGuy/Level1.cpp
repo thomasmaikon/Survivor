@@ -22,6 +22,11 @@
 #include <fstream>
 #include "Chao.h"
 #include "BolaDeFogo.h"
+#include <random>
+#include "Chegada.h"
+
+using namespace std;
+
 using std::ifstream;
 using std::string;
 
@@ -49,20 +54,11 @@ void Level1::Init()
     // ----------------------
 
     Chao * chao;
-    BolaDeFogo* bola;
     uint  platType;
     float posX, posY;
     Color white { 1,1,1,1 };
     Platform * plat;
-    Moeda* moeda ;
-    //scene->Add(moeda, ObjectGroup::STATIC);
-    
-    //moeda = new Moeda(360, 300, white,1);
-    //scene->Add(moeda, ObjectGroup::STATIC);
-    
-    //moeda = new Moeda(370, 300, white,1);
-    //scene->Add(moeda, ObjectGroup::STATIC);
-    
+ 
     chao = new Chao(window->CenterX(), window->Height()-16, white);
     scene->Add(chao, ObjectGroup::STATIC);
 
@@ -151,6 +147,11 @@ void Level1::Init()
 
     //plataforma 19
     this->inserirMoedaPlataforma(6335, 11);
+
+    Chegada* chegada = new Chegada(6910,0, white,1);
+    scene->Add(chegada, ObjectGroup::MOVING);
+
+    this->inserirBolasDeFogo(6335, 100);
 }
 
 // ------------------------------------------------------------------------------
@@ -207,7 +208,20 @@ void Level1::inserirMoedaPlataforma(int posicaoInicial, int qtd) {
     int espacamento = 35;
     for (int quantidade = 0; quantidade < qtd; ++quantidade) {
         moeda = new Moeda(posicaoInicial + espacamento * quantidade, 0, white, 1);
-        scene->Add(moeda, MOVING);
+        scene->Add(moeda, ObjectGroup::MOVING);
     }
 }
 // ------------------------------------------------------------------------------
+void Level1::inserirBolasDeFogo(int posicaoFinal, int qtd) {
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_int_distribution<int> dist(400, posicaoFinal);
+
+    BolaDeFogo* bola;
+
+    for(int i = 0; i < qtd; ++i)
+    {
+        bola = new BolaDeFogo(dist(mt), 150, Color{ 1,1,1,1 }, 1);
+        scene->Add(bola, ObjectGroup::MOVING);
+    }
+}

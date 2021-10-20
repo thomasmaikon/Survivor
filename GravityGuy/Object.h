@@ -27,7 +27,7 @@
 #define LIMBOX -100000.0f
 #define LIMBOY -100000.0f
 
-enum ListTypes { PLAYER, COIN, PLATFORM};
+enum ListTypes { PLAYER, COIN, PLATFORM, ENEMY, CHECKPOINT};
 
 class Object
 {
