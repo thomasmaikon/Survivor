@@ -50,7 +50,7 @@ Moeda::~Moeda()
 void Moeda::Update()
 {
     // move plataforma apenas no eixo x
-    Translate(-200.0f * gameTime, 500.0f * gameTime);
+    Translate(-300.0f * gameTime, 500.0f * gameTime);
     anim->NextFrame();
 }
 

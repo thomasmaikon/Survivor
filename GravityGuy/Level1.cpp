@@ -43,6 +43,7 @@ void Level1::Init()
     score << std::fixed;
 
     GravityGuy::player->score = 0;
+    GravityGuy::player->level = 0;// ele esta comecando
     
     // cria gerenciador de cena
     scene = new Scene();
@@ -178,6 +179,8 @@ void Level1::Update()
     else if (GravityGuy::player->Level() == 1 || window->KeyPress('N'))
     {
         GravityGuy::audio->Stop(DUNGEON);
+        GravityGuy::audio->Stop(MOVINGPLAYER);
+        GravityGuy::player->Reset();
         GravityGuy::NextLevel<Transicao>();
     }
     else

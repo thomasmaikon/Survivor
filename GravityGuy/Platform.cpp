@@ -26,6 +26,8 @@ Platform::Platform(float posX, float posY, uint platType, Color tint, uint level
     //case FINISH: platform = new Sprite("Resources/Finish.png"); type = FINISH; break;
     }
     
+    height = platform->Height();
+    width = platform->Width();
     BBox(new Rect(-platform->Width()/2.0f, 
                   -platform->Height()/2.0f, 
                    platform->Width()/2.0f, 
@@ -48,7 +50,7 @@ void Platform::Update()
 {
     
     // move plataforma apenas no eixo x
-    Translate(-200.0f * gameTime, 0);
+    Translate(-300.0f * gameTime, 0);
    
     if (x + platform->Width() < 0)
     {

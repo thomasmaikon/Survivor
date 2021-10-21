@@ -71,6 +71,6 @@ void Chegada::Draw()
 void Chegada::Update()
 {
     anim->NextFrame();
-    Translate(-200 * gameTime, 200 * gameTime); // acompanha os demais objetos
+    Translate(-300 * gameTime, 200 * gameTime); // acompanha os demais objetos
 }
 

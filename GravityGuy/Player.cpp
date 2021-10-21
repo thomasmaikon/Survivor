@@ -78,32 +78,51 @@ void Player::OnCollision(Object * obj)
 {
 
     if (obj->Type() == PLATFORM) {  
+        auto* plat = (Platform*)obj;
+        
         colidiu = true;
-            if(!isJumping)
-                MoveTo(x, obj->Y() - 30);
+        
+        if(plat->Y() >= y) // o player esta na parte de cima
+        {
+            if (!isJumping)
+                MoveTo(x, plat->Y()-(tileset->Height()/3));
+        }else if (plat->Y() + plat->Altura() <= y) // o player esta na parte de baixo
+        {
+            //if(!isJumping)
+                MoveTo(x, plat->Y() + plat->Altura() + (tileset->Height() / 4));
+        }else if( plat->Y() <= y && plat->X() - (plat->Largura() / 2) >= x) // o player esta batendo ou na lateral esquerda ou direita
+        {
+            MoveTo(plat->X() - (plat->Largura()/2) - 20, y); // esta batendo na esquerda
+            
+        }else
+        {
+            MoveTo(plat->X() + (plat->Largura() / 2) +20, y); // esta batendo na direita
+        }
 
-            platformCollided = true;
-            if (soundControllerMove) {
-                GravityGuy::audio->Play(MOVINGPLAYER, true);
-                soundControllerMove = false;
-            }
-            anim->Select(ANDANDO);
+        platformCollided = true;
+        
+        if (soundControllerMove) {
+            GravityGuy::audio->Play(MOVINGPLAYER, true);
+            soundControllerMove = false;
+        }
+        
+        anim->Select(ANDANDO);
 
-            if (window->KeyDown(VK_RIGHT))
-            {
-                Translate(300 * gameTime, 0);
-                GravityGuy::audio->Frequency(MOVINGPLAYER, 1.1f);
-            }
+        if (window->KeyDown(VK_RIGHT))
+        {
+            Translate(300 * gameTime, 0);
+            GravityGuy::audio->Frequency(MOVINGPLAYER, 1.1f);
+        }
 
-            if (window->KeyDown(VK_LEFT) )
-            {
-                Translate(-150 * gameTime, 0);
-                GravityGuy::audio->Frequency(MOVINGPLAYER, 0.9f);
-            }
-            if(window->KeyPress(VK_UP))
-            {
-                isJumping = true;
-            }
+        if (window->KeyDown(VK_LEFT) )
+        {
+            Translate(-150 * gameTime, 0);
+            GravityGuy::audio->Frequency(MOVINGPLAYER, 0.9f);
+        }
+        if(window->KeyPress(VK_UP))
+        {
+            isJumping = true;
+        }
        
     }
     if (obj->Type() == ListTypes::COIN)
@@ -115,14 +134,15 @@ void Player::OnCollision(Object * obj)
 void Player::Update()
 {
     //gravidade
-    Translate(0, 100 * gameTime);
+    Translate(0, 300 * gameTime);
 
    if(isJumping)
    {
-       if (jump != 10)
+       GravityGuy::audio->Stop(MOVINGPLAYER);
+       if (jump < 10)
        {
            ++jump;
-           Translate(50 * gameTime, -500 * gameTime);
+           Translate(50 * gameTime, -700 * gameTime);
            colidiu = false;
        }
        else if(!colidiu)
@@ -132,26 +152,10 @@ void Player::Update()
        else {
            jump = 0;
            isJumping = false;
+           GravityGuy::audio->Play(MOVINGPLAYER, true);
        }
    }
   
-    /*
-    if (window->KeyDown(VK_RIGHT))
-    {
-        Translate(300 * gameTime, 0);
-        GravityGuy::audio->Frequency(MOVINGPLAYER, 1.1f);
-    }
-
-    if (window->KeyDown(VK_LEFT))
-    {
-        Translate(-300 * gameTime, 0);
-        GravityGuy::audio->Frequency(MOVINGPLAYER, 0.9f);
-    }
-
-    if (window->KeyDown(VK_UP))
-    {
-        Translate(0,-300 * gameTime);
-    }*/
    
     if (window->KeyDown(VK_DOWN))
     {

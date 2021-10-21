@@ -30,12 +30,16 @@ private:
     Sprite * platform = nullptr;            // sprite da plataforma
     Color color;                            // cor da plataforma
     uint level;
+    int height;
+    int width;
 public:
     Platform(float posX, float posY, uint platType, Color tint, uint level); // construtor    
     ~Platform();                            // destrutor
 
     void Update();                          // atualização do objeto
     void Draw();                            // desenho do objeto
+    int Altura();
+    int Largura();
 }; 
 
 // ---------------------------------------------------------------------------------
@@ -45,5 +49,10 @@ inline void Platform::Draw()
 { platform->Draw(x, y, z, 1.0f, 0.0f, color); }
 
 // ---------------------------------------------------------------------------------
+inline int Platform::Altura()
+{return height;}
+// ---------------------------------------------------------------------------------
+inline int Platform::Largura()
+{return width;}
 
 #endif
