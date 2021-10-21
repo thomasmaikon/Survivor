@@ -24,6 +24,7 @@
 
 #include <string>
 #include <fstream>
+#include "Vitoria.h"
 using std::ifstream;
 using std::string;
 
@@ -163,7 +164,7 @@ void Level2::Update()
         Survivor::audio->Stop(DUNGEON);
         Survivor::audio->Stop(MOVINGPLAYER);
         Survivor::player->Reset();
-        Survivor::NextLevel<Home>();
+        Survivor::NextLevel<Vitoria>();
     }
     else if (Survivor::player->Bottom() < 0 || Survivor::player->Top() > window->Height() || Survivor::player->State())
     {

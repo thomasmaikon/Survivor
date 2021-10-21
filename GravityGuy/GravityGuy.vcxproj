@@ -184,6 +184,7 @@
     <ClCompile Include="TileSet.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Transicao.cpp" />
+    <ClCompile Include="Vitoria.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +201,7 @@
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Survivor.h" />
     <ClInclude Include="Home.h" />
     <ClInclude Include="Image.h" />
@@ -222,6 +224,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Transicao.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="Vitoria.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +263,14 @@
   <ItemGroup>
     <Text Include="Level1.txt" />
     <Text Include="Level2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\dinoIcon.ico" />
+    <Image Include="Resources\Icon.ico" />
+    <Image Include="resources\icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cursor.cur" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

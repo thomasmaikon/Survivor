@@ -132,6 +132,9 @@
     <ClCompile Include="SeletorConfiguracao.cpp">
       <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Vitoria.cpp">
+      <Filter>Game\Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources.h">
@@ -242,6 +245,12 @@
     <ClInclude Include="SeletorConfiguracao.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="Vitoria.h">
+      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Vertex.hlsl">
@@ -263,5 +272,21 @@
     <Text Include="Level2.txt">
       <Filter>Game\Arquivos de Recurso</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\icon1.ico">
+      <Filter>Game\Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Resources\dinoIcon.ico">
+      <Filter>Game\Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Resources\Icon.ico">
+      <Filter>Game\Arquivos de Recurso</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cursor.cur">
+      <Filter>Game\Arquivos de Recurso</Filter>
+    </None>
   </ItemGroup>
 </Project>

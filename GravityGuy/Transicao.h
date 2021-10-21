@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _GRAVITYGUY_TRANSICAO_H_
-#define _GRAVITYGUY_TRANSICAO_H_
+#ifndef _SURVIVOR_TRANSICAO_H_
+#define _SURVIVOR_TRANSICAO_H_
 
 // ------------------------------------------------------------------------------
 // Inclusões
