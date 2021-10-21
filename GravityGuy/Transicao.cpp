@@ -28,11 +28,13 @@ void Transicao::Update()
     {
     case TRANSICAONIVEL::CONTINUAR:
         Survivor::audio->Stop(MENU);
+        Survivor::player->Reset();
         Survivor::NextLevel<Level2>();
         break;
 
     case TRANSICAONIVEL::RETORNARMENU:
         //GravityGuy::audio->Play(MENU, true);
+        Survivor::player->Reset();
         Survivor::NextLevel<Home>();
         break;
 
