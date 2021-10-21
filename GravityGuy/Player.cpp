@@ -13,7 +13,7 @@
 #include "Player.h"
 #include "GravityGuy.h"
 #include "Platform.h"
-
+#include "GameOver.h"
 // ---------------------------------------------------------------------------------
 
 Player::Player()
@@ -69,6 +69,7 @@ void Player::Reset()
     level = 0;
     score = 0;
     isJumping = false;
+    dead = false;
 }
 
 
@@ -127,6 +128,9 @@ void Player::OnCollision(Object * obj)
     }
     if (obj->Type() == ListTypes::COIN)
         ++score;
+
+    if (obj->Type() == ListTypes::ENEMY)
+        dead = true;
 }
 
 // ---------------------------------------------------------------------------------
@@ -167,8 +171,8 @@ void Player::Update()
     // atualiza animação
     //anim->Select(gravity);
     anim->NextFrame();    
-    
-
 }
 
 // ---------------------------------------------------------------------------------
+
+bool Player::State() { return dead; }

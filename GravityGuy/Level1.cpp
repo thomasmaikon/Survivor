@@ -169,7 +169,7 @@ void Level1::Update()
         GravityGuy::player->Reset();
         GravityGuy::NextLevel<Home>();
     }
-    else if (GravityGuy::player->Bottom() < 0 || GravityGuy::player->Top() > window->Height())
+    else if (GravityGuy::player->Bottom() < 0 || GravityGuy::player->Top() > window->Height() || GravityGuy::player->State())
     {
         GravityGuy::audio->Stop(DUNGEON);
         GravityGuy::audio->Stop(MOVINGPLAYER);

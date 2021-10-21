@@ -33,7 +33,8 @@ private:
     uint        typeAnim;                // gravidade atuando sobre o jogador
    
     bool colidiu;
-    
+    bool dead = false;
+
     bool isJumping;
     bool platformCollided;
     bool soundControllerMove;
@@ -54,6 +55,8 @@ public:
 
     int score;
     int level;                  // nível finalizado
+
+    bool State();
 };
 
 // ---------------------------------------------------------------------------------
