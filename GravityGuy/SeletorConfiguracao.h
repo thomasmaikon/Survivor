@@ -1,10 +1,10 @@
 #pragma once
 
 
-#ifndef _GRAVITYGUY_SELECTORCONFIGURACAO_H_
-#define _GRAVITYGUY_SELECTORCONFIGURACAO_H_
+#ifndef _SURVIVOR_SELECTORCONFIGURACAO_H_
+#define _SURVIVOR_SELECTORCONFIGURACAO_H_
 
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Object.h"
 #include "TileSet.h"
 #include "Animation.h"

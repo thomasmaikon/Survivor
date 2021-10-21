@@ -9,8 +9,8 @@
 //
 **********************************************************************************/
 
-#ifndef _GRAVITYGUY_PLATFORM_H_
-#define _GRAVITYGUY_PLATFORM_H_
+#ifndef _SURVIVOR_PLATFORM_H_
+#define _SURVIVOR_PLATFORM_H_
 
 // ---------------------------------------------------------------------------------
 

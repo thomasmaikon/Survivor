@@ -9,8 +9,8 @@
 //              
 **********************************************************************************/
 
-#ifndef _GRAVITYGUY_GAMEOVER_H_
-#define _GRAVITYGUY_GAMEOVER_H_
+#ifndef _SURVIVOR_GAMEOVER_H_
+#define _SURVIVOR_GAMEOVER_H_
 
 // ------------------------------------------------------------------------------
 

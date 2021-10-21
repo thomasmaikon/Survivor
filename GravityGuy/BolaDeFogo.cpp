@@ -36,7 +36,7 @@ BolaDeFogo::BolaDeFogo(float posX, float posY, Color tinta, uint level) : color(
     
     isOut = (posX <= 850) ? false : true;
 
-    GravityGuy::audio->Volume(FIRE, GravityGuy::efeito);
+    Survivor::audio->Volume(FIRE, Survivor::efeito);
 }
 
 
@@ -55,7 +55,7 @@ void BolaDeFogo::OnCollision(Object* obj)
 {
     if (isFirst && (obj->Type() == ListTypes::PLAYER || obj->Type() == ListTypes::PLATFORM)) { // evita que ele colida com ele mesmo e so colida com player e plataforma
         isFirst = false;
-        GravityGuy::audio->Play(FIRE); 
+        Survivor::audio->Play(FIRE);
         anim->Select(EXPLOSION::COLLIDED);
         collided = true;
         MoveTo(x, obj->Y() - 40, z);

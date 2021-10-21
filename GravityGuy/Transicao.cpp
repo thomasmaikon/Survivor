@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine.h"
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Transicao.h"
 #include "Level2.h"
 #include "Home.h"
@@ -15,7 +15,7 @@ void Transicao::Init()
     backg = new Sprite("Resources/transicao.png");
     select = new SeletorTransicao(Color{ 1,1,1,1 });
 
-    GravityGuy::audio->Play(MENU, true);
+    Survivor::audio->Play(MENU, true);
 }
 
 // ------------------------------------------------------------------------------
@@ -27,13 +27,13 @@ void Transicao::Update()
     switch (select->Position())
     {
     case TRANSICAONIVEL::CONTINUAR:
-        GravityGuy::audio->Stop(MENU);
-        GravityGuy::NextLevel<Level2>();
+        Survivor::audio->Stop(MENU);
+        Survivor::NextLevel<Level2>();
         break;
 
     case TRANSICAONIVEL::RETORNARMENU:
         //GravityGuy::audio->Play(MENU, true);
-        GravityGuy::NextLevel<Home>();
+        Survivor::NextLevel<Home>();
         break;
 
     default:
@@ -47,8 +47,8 @@ void Transicao::Update()
 void Transicao::Draw()
 {
     score.str("");
-    score << "Score: " << GravityGuy::player->score;
-    GravityGuy::gameFont->Draw(30, 30, score.str(), Color{ 1.0f,1.0f,1.0f,1.0f });
+    score << "Score: " << Survivor::player->score;
+    Survivor::gameFont->Draw(30, 30, score.str(), Color{ 1.0f,1.0f,1.0f,1.0f });
 
     backg->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
     select->Draw();

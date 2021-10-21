@@ -34,7 +34,7 @@ Moeda::Moeda(float posX, float posY, Color tinta, uint level) : color(tinta)
     anim->Select(0);
     type = COIN;
 
-    GravityGuy::audio->Volume(GETCOIN, GravityGuy::efeito);
+    Survivor::audio->Volume(GETCOIN, Survivor::efeito);
 }
 
 // ---------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ void Moeda::OnCollision(Object* obj) {
     
     if( obj->Type() == PLAYER)
     {
-        GravityGuy::audio->Play(GETCOIN);
+        Survivor::audio->Play(GETCOIN);
         colided = true;
         //MoveTo(LIMBOX, LIMBOY, z);
     }

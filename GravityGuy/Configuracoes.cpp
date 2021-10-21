@@ -1,5 +1,5 @@
 #include "Configuracoes.h"
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Home.h"
 #include <sstream>
 //-------------------------------------------------------------------------------
@@ -10,14 +10,14 @@ Configuracoes::Configuracoes(){}
 
 void Configuracoes::Init() 
 {
-	this->musica = GravityGuy::musica;
-	this->efeito = GravityGuy::efeito;
+	this->musica = Survivor::musica;
+	this->efeito = Survivor::efeito;
 
 	barra = new Sprite("Resources/Bar.png");
 	nivel = new Sprite("Resources/Level.png");
 
-    GravityGuy::audio->Volume(TESTSOUNDMUSIC, GravityGuy::musica);
-	GravityGuy::audio->Play(TESTSOUNDMUSIC,true);
+    Survivor::audio->Volume(TESTSOUNDMUSIC, Survivor::musica);
+    Survivor::audio->Play(TESTSOUNDMUSIC,true);
 	select = new SeletorConfiguracao(Color{1,1,1,1});
 }
 
@@ -27,7 +27,7 @@ void Configuracoes::Update()
 {
 
     select->Update();
-    GravityGuy::audio->Volume(TESTSOUNDMUSIC, musica);
+    Survivor::audio->Volume(TESTSOUNDMUSIC, musica);
     
     switch (select->Position())
     {
@@ -60,10 +60,10 @@ void Configuracoes::Update()
         break;
 
     case TYPE::RETORNAR:
-        GravityGuy::musica = this->musica;
-        GravityGuy::efeito = this->efeito;
-        GravityGuy::audio->Stop(TESTSOUNDMUSIC);
-        GravityGuy::NextLevel<Home>();
+        Survivor::musica = this->musica;
+        Survivor::efeito = this->efeito;
+        Survivor::audio->Stop(TESTSOUNDMUSIC);
+        Survivor::NextLevel<Home>();
         break;
     
     default:    
@@ -78,8 +78,8 @@ void Configuracoes::Draw()
 {
     std::stringstream ss;
 
-    GravityGuy::titleFont->Draw(window->CenterX()-150, 80, "Sound Control", Color(0.9f, 0.9f, 0.0f, 1.0f), Layer::FRONT, 0.8f);
-    GravityGuy::gameFont->Draw(window->CenterX()-15, 300, "Retrun", Color(1.0, 1.0f, 1.0f, 1.0f),Layer::FRONT, 0.8f);
+    Survivor::titleFont->Draw(window->CenterX()-150, 80, "Sound Control", Color(0.9f, 0.9f, 0.0f, 1.0f), Layer::FRONT, 0.8f);
+    Survivor::gameFont->Draw(window->CenterX()-15, 300, "Retrun", Color(1.0, 1.0f, 1.0f, 1.0f),Layer::FRONT, 0.8f);
 
     select->Draw();
     
@@ -88,7 +88,7 @@ void Configuracoes::Draw()
 
     barra->Draw(window->CenterX(), 200);
     nivel->Draw(window->CenterX() - 134 + musica * 134, 200);
-    GravityGuy::sysFont->Draw(window->CenterX()-15, 180, ss.str().c_str() , Color(1.0, 1.0f, 1.0f, 1.0f), Layer::FRONT, 0.8f);
+    Survivor::sysFont->Draw(window->CenterX()-15, 180, ss.str().c_str() , Color(1.0, 1.0f, 1.0f, 1.0f), Layer::FRONT, 0.8f);
 
     ss.str("");
     ss << "Efeito: " << efeito;
@@ -96,7 +96,7 @@ void Configuracoes::Draw()
     barra->Draw(window->CenterX(), 245);
     nivel->Draw(window->CenterX() - 134 + efeito * 134, 245);
     
-    GravityGuy::sysFont->Draw(window->CenterX() -15, 230, ss.str().c_str(), Color(1.0, 1.0f, 1.0f, 1.0f), Layer::FRONT, 0.8f);
+    Survivor::sysFont->Draw(window->CenterX() -15, 230, ss.str().c_str(), Color(1.0, 1.0f, 1.0f, 1.0f), Layer::FRONT, 0.8f);
 
 }
 

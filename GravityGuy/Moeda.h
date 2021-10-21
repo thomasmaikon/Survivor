@@ -2,10 +2,10 @@
 
 
 
-#ifndef _GRAVITYGUY_MOEDA_H_
-#define _GRAVITYGUY_MOEDA_H_
+#ifndef _SURVIVOR_MOEDA_H_
+#define _SURVIVOR_MOEDA_H_
 
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Object.h"
 #include "TileSet.h"
 #include "Animation.h"

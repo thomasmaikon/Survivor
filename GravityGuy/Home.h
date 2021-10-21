@@ -9,8 +9,8 @@
 //
 **********************************************************************************/
 
-#ifndef _GRAVITYGUY_HOME_H_
-#define _GRAVITYGUY_HOME_H_
+#ifndef _SURVIVOR_HOME_H_
+#define _SURVIVOR_HOME_H_
 
 // ------------------------------------------------------------------------------
 // Inclusões

@@ -11,7 +11,6 @@
 
 #include "Chegada.h"
 #include "Level1.h"
-#include "GravityGuy.h"
 #include "Transicao.h"
 // ---------------------------------------------------------------------------------
 
@@ -55,7 +54,7 @@ void Chegada::OnCollision(Object* obj)
 
     if (obj->Type() == PLAYER) 
     {
-        GravityGuy::player->level = level;
+        Survivor::player->level = level;
     }
 }
 

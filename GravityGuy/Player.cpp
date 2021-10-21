@@ -11,7 +11,7 @@
 
 
 #include "Player.h"
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Platform.h"
 #include "GameOver.h"
 // ---------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ void Player::OnCollision(Object * obj)
         platformCollided = true;
         
         if (soundControllerMove) {
-            GravityGuy::audio->Play(MOVINGPLAYER, true);
+            Survivor::audio->Play(MOVINGPLAYER, true);
             soundControllerMove = false;
         }
         
@@ -112,13 +112,13 @@ void Player::OnCollision(Object * obj)
         if (window->KeyDown(VK_RIGHT))
         {
             Translate(300 * gameTime, 0);
-            GravityGuy::audio->Frequency(MOVINGPLAYER, 1.1f);
+            Survivor::audio->Frequency(MOVINGPLAYER, 1.1f);
         }
 
         if (window->KeyDown(VK_LEFT) )
         {
             Translate(-150 * gameTime, 0);
-            GravityGuy::audio->Frequency(MOVINGPLAYER, 0.9f);
+            Survivor::audio->Frequency(MOVINGPLAYER, 0.9f);
         }
         if(window->KeyPress(VK_UP))
         {
@@ -142,7 +142,7 @@ void Player::Update()
 
    if(isJumping)
    {
-       GravityGuy::audio->Stop(MOVINGPLAYER);
+       Survivor::audio->Stop(MOVINGPLAYER);
        if (jump < 10)
        {
            ++jump;
@@ -156,7 +156,7 @@ void Player::Update()
        else {
            jump = 0;
            isJumping = false;
-           GravityGuy::audio->Play(MOVINGPLAYER, true);
+           Survivor::audio->Play(MOVINGPLAYER, true);
        }
    }
   

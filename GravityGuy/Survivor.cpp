@@ -10,28 +10,28 @@
 **********************************************************************************/
 
 #include "Engine.h"
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Home.h"
 #include "GameOver.h"
 
 // ------------------------------------------------------------------------------
 
 // inicializa membros estáticos da classe
-Game*   GravityGuy::level = nullptr;
-Player* GravityGuy::player = nullptr;
-Audio*  GravityGuy::audio = nullptr;
-bool    GravityGuy::viewBBox = false;
+Game*   Survivor::level = nullptr;
+Player* Survivor::player = nullptr;
+Audio* Survivor::audio = nullptr;
+bool    Survivor::viewBBox = false;
 
-float    GravityGuy::efeito = 1.0f;
-float    GravityGuy::musica = 1.0f;
+float    Survivor::efeito = 1.0f;
+float    Survivor::musica = 1.0f;
 
-Font* GravityGuy::titleFont = nullptr;     // fonte do título 
-Font* GravityGuy::gameFont = nullptr;     // fonte do jogo
-Font* GravityGuy::sysFont = nullptr;     // fonte padrão
+Font* Survivor::titleFont = nullptr;     // fonte do título 
+Font* Survivor::gameFont = nullptr;     // fonte do jogo
+Font* Survivor::sysFont = nullptr;     // fonte padrão
 
 // ------------------------------------------------------------------------------
 
-void GravityGuy::Init() 
+void Survivor::Init()
 {
 
     titleFont = new Font("Resources/Bauhaus72.png");
@@ -47,8 +47,8 @@ void GravityGuy::Init()
     // cria sistema de áudio
     audio = new Audio();
     audio->Add(MENU, "Resources/sounds/menu.wav");
-    audio->Add(MUSIC, "Resources/Music.wav");
-    audio->Add(TRANSITION, "Resources/Transition.wav");
+   // audio->Add(MUSIC, "Resources/Music.wav");
+   // audio->Add(TRANSITION, "Resources/Transition.wav");
     audio->Add(GETCOIN, "Resources/sounds/moeda_sound.wav");
     audio->Add(DEATH, "Resources/sounds/morte.wav");
     audio->Add(MOVINGPLAYER, "Resources/sounds/andando.wav");
@@ -72,7 +72,7 @@ void GravityGuy::Init()
 
 // ------------------------------------------------------------------------------
 
-void GravityGuy::Update()
+void Survivor::Update()
 {
     // habilita/desabilita visualização da bounding box
     if (window->KeyPress('B'))
@@ -84,7 +84,7 @@ void GravityGuy::Update()
 
 // ------------------------------------------------------------------------------
 
-void GravityGuy::Draw()
+void Survivor::Draw()
 {
     // desenha nível
     level->Draw();
@@ -92,7 +92,7 @@ void GravityGuy::Draw()
 
 // ------------------------------------------------------------------------------
 
-void GravityGuy::Finalize()
+void Survivor::Finalize()
 {
     level->Finalize();
 
@@ -114,13 +114,13 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     engine->window->Mode(WINDOWED);
     engine->window->Size(800, 400);
     engine->window->Color(30, 50, 80);
-    engine->window->Title("Gravity Guy");
+    engine->window->Title("Survivor");
     engine->window->Icon(IDI_ICON);
     engine->window->Cursor(IDC_CURSOR);
     //engine->graphics->VSync(true);
 
     // inicia o jogo
-    int status = engine->Start(new GravityGuy());
+    int status = engine->Start(new Survivor());
 
     delete engine;
     return status;

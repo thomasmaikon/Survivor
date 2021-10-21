@@ -9,8 +9,8 @@
 //
 **********************************************************************************/
 
-#ifndef _GRAVITYGUY_PLAYER_H_
-#define _GRAVITYGUY_PLAYER_H_
+#ifndef _SURVIVOR_PLAYER_H_
+#define _SURVIVOR_PLAYER_H_
 
 // ---------------------------------------------------------------------------------
 // Inclusões

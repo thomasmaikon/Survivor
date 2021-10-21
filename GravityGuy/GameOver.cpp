@@ -11,7 +11,7 @@
 
 #include "Engine.h"
 #include "GameOver.h"
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Home.h"
 
 // ----------------------------------------------------------------------
@@ -19,8 +19,8 @@
 void GameOver::Init()
 {
     title = new Sprite("Resources/GameOver.png");
-    GravityGuy::audio->Volume(DEATH, GravityGuy::musica);
-    GravityGuy::audio->Play(DEATH, true);
+    Survivor::audio->Volume(DEATH, Survivor::musica);
+    Survivor::audio->Play(DEATH, true);
 }
 
 // ----------------------------------------------------------------------
@@ -29,8 +29,8 @@ void GameOver::Update()
 {
     if (window->KeyPress(VK_ESCAPE) || window->KeyPress(VK_RETURN))
     {
-        GravityGuy::audio->Stop(DEATH);
-        GravityGuy::NextLevel<Home>();
+        Survivor::audio->Stop(DEATH);
+        Survivor::NextLevel<Home>();
     }
 }
 
@@ -38,7 +38,7 @@ void GameOver::Update()
 
 void GameOver::Draw()
 {
-    GravityGuy::sysFont->Draw(window->CenterX() - 40, 350, "Pressione [ENTER]", Color(0.9F, 0.9f, 0.0f, 1.0f), Layer::FRONT, 0.8f);
+    Survivor::sysFont->Draw(window->CenterX() - 40, 350, "Pressione [ENTER]", Color(0.9F, 0.9f, 0.0f, 1.0f), Layer::FRONT, 0.8f);
     title->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
 }
 

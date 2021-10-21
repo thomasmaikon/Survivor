@@ -2,10 +2,10 @@
 
 
 
-#ifndef _GRAVITYGUY_CHEGADA_H_
-#define _GRAVITYGUY_CHEGADA_H_
+#ifndef _SURVIVOR_CHEGADA_H_
+#define _SURVIVOR_CHEGADA_H_
 
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Object.h"
 #include "TileSet.h"
 #include "Animation.h"

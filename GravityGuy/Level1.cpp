@@ -9,7 +9,7 @@
 //
 **********************************************************************************/
 
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Home.h"
 #include "Level1.h"
 #include "Level2.h"
@@ -42,8 +42,8 @@ void Level1::Init()
 {
     score << std::fixed;
 
-    GravityGuy::player->score = 0;
-    GravityGuy::player->level = 0;// ele esta comecando
+    Survivor::player->score = 0;
+    Survivor::player->level = 0;// ele esta comecando
     
     // cria gerenciador de cena
     scene = new Scene();
@@ -53,7 +53,7 @@ void Level1::Init()
     scene->Add(backg, STATIC);
 
     // adiciona jogador na cena
-    scene->Add(GravityGuy::player, MOVING);
+    scene->Add(Survivor::player, MOVING);
 
     // ----------------------
     // plataformas
@@ -155,8 +155,8 @@ void Level1::Init()
 
     //this->inserirBolasDeFogo(6335, 40);
 
-    GravityGuy::audio->Play(DUNGEON, true);
-    GravityGuy::audio->Volume(DUNGEON, GravityGuy::musica);
+    Survivor::audio->Play(DUNGEON, true);
+    Survivor::audio->Volume(DUNGEON, Survivor::musica);
 }
 
 // ------------------------------------------------------------------------------
@@ -165,23 +165,23 @@ void Level1::Update()
 {
     if (window->KeyPress(VK_ESCAPE))
     {
-        GravityGuy::audio->Stop(DUNGEON);
-        GravityGuy::player->Reset();
-        GravityGuy::NextLevel<Home>();
+        Survivor::audio->Stop(DUNGEON);
+        Survivor::player->Reset();
+        Survivor::NextLevel<Home>();
     }
-    else if (GravityGuy::player->Bottom() < 0 || GravityGuy::player->Top() > window->Height() || GravityGuy::player->State())
+    else if (Survivor::player->Bottom() < 0 || Survivor::player->Top() > window->Height() || Survivor::player->State())
     {
-        GravityGuy::audio->Stop(DUNGEON);
-        GravityGuy::audio->Stop(MOVINGPLAYER);
-        GravityGuy::player->Reset();
-        GravityGuy::NextLevel<GameOver>();
+        Survivor::audio->Stop(DUNGEON);
+        Survivor::audio->Stop(MOVINGPLAYER);
+        Survivor::player->Reset();
+        Survivor::NextLevel<GameOver>();
     }
-    else if (GravityGuy::player->Level() == 1 || window->KeyPress('N'))
+    else if (Survivor::player->Level() == 1 || window->KeyPress('N'))
     {
-        GravityGuy::audio->Stop(DUNGEON);
-        GravityGuy::audio->Stop(MOVINGPLAYER);
-        GravityGuy::player->Reset();
-        GravityGuy::NextLevel<Transicao>();
+        Survivor::audio->Stop(DUNGEON);
+        Survivor::audio->Stop(MOVINGPLAYER);
+        Survivor::player->Reset();
+        Survivor::NextLevel<Transicao>();
     }
     else
     {
@@ -199,10 +199,10 @@ void Level1::Draw()
     scene->Draw();
     
     score.str("");
-    score << "Score: "  << GravityGuy::player->score;
-    GravityGuy::gameFont->Draw(30, 30, score.str(), Color{1.0f,1.0f,1.0f,1.0f});
+    score << "Score: "  << Survivor::player->score;
+    Survivor::gameFont->Draw(30, 30, score.str(), Color{1.0f,1.0f,1.0f,1.0f});
 
-    if (GravityGuy::viewBBox)
+    if (Survivor::viewBBox)
         scene->DrawBBox();
 
 }
@@ -211,7 +211,7 @@ void Level1::Draw()
 
 void Level1::Finalize()
 {
-    scene->Remove(GravityGuy::player, MOVING);
+    scene->Remove(Survivor::player, MOVING);
     delete scene;
 }
 

@@ -2,10 +2,10 @@
 
 
 
-#ifndef _GRAVITYGUY_CHAO_H_
-#define _GRAVITYGUY_CAHO_H_
+#ifndef _SURVIVOR_CHAO_H_
+#define _SURVIVOR_CHAO_H_
 
-#include "GravityGuy.h"
+#include "Survivor.h"
 #include "Object.h"
 #include "TileSet.h"
 #include "Animation.h"
