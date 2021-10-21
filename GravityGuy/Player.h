@@ -18,7 +18,8 @@
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Animation.h"                  // animação de sprites
-
+#include <sstream>
+using namespace std;
 // ------------------------------------------------------------------------------
 
 enum ANIMATION {CAINDO,ANDANDO};         // tipo da gravidade
@@ -55,6 +56,7 @@ public:
 
     int score;
     int level;                  // nível finalizado
+    stringstream text;
 
     bool State();
 };

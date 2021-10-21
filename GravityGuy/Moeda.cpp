@@ -62,7 +62,7 @@ void Moeda::OnCollision(Object* obj) {
     {
         Survivor::audio->Play(GETCOIN);
         colided = true;
-        //MoveTo(LIMBOX, LIMBOY, z);
+        MoveTo(LIMBOX, LIMBOY, z);
     }
     if(obj->Type() == ListTypes::PLATFORM)
         MoveTo(x, obj->Y() - 26, z);
@@ -73,8 +73,9 @@ void Moeda::OnCollision(Object* obj) {
 void Moeda::Draw()
 {
    anim->Draw(x, y, z, color);
-   
-   if(colided)
+
+   /*
+   if(colided || x + moeda->Width() <= 0)
    {
        switch (level)
        {
@@ -87,5 +88,5 @@ void Moeda::Draw()
        default:
            break;
        }
-   }
+   }*/
 }

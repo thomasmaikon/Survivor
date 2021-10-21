@@ -51,8 +51,8 @@ void Platform::Update()
     
     // move plataforma apenas no eixo x
     Translate(-300.0f * gameTime, 0);
-   
-    if (x + platform->Width() < 0)
+   /*
+    if (x + platform->Width() <= 0)
     {
         switch (level)
         {
@@ -66,7 +66,7 @@ void Platform::Update()
             break;
         }
     }
-
+    */
 }
 
 // -------------------------------------------------------------------------------

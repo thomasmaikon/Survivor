@@ -14,6 +14,7 @@
 #include "Survivor.h"
 #include "Platform.h"
 #include "GameOver.h"
+
 // ---------------------------------------------------------------------------------
 
 Player::Player()
@@ -23,6 +24,7 @@ Player::Player()
     tileset = new TileSet("Resources/dino.png", 40, 48, 4, 8);
     anim = new Animation(tileset, 0.120f, true);
 
+    
     // sequências de animação do player
     uint invert[4] = {1};
     uint normal[4] = {1,2,3,4};
@@ -131,6 +133,7 @@ void Player::OnCollision(Object * obj)
 
     if (obj->Type() == ListTypes::ENEMY)
         dead = true;
+
 }
 
 // ---------------------------------------------------------------------------------
@@ -143,7 +146,7 @@ void Player::Update()
    if(isJumping)
    {
        Survivor::audio->Stop(MOVINGPLAYER);
-       if (jump < 10)
+       if (jump < 20)
        {
            ++jump;
            Translate(50 * gameTime, -700 * gameTime);
@@ -157,9 +160,12 @@ void Player::Update()
            jump = 0;
            isJumping = false;
            Survivor::audio->Play(MOVINGPLAYER, true);
+           colidiu = true;
        }
    }
   
+  
+
    
     if (window->KeyDown(VK_DOWN))
     {

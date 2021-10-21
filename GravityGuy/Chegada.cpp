@@ -12,6 +12,7 @@
 #include "Chegada.h"
 #include "Level1.h"
 #include "Transicao.h"
+
 // ---------------------------------------------------------------------------------
 
 Chegada::Chegada(float posX, float posY, Color tinta, uint level) : color(tinta)
