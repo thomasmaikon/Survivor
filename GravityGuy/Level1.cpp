@@ -173,14 +173,14 @@ void Level1::Update()
     {
         Survivor::audio->Stop(DUNGEON);
         Survivor::audio->Stop(MOVINGPLAYER);
-        
+        Survivor::player->Reset();
         Survivor::NextLevel<GameOver>();
     }
     else if (Survivor::player->Level() == 1 || window->KeyPress('N'))
     {
         Survivor::audio->Stop(DUNGEON);
         Survivor::audio->Stop(MOVINGPLAYER);
-        Survivor::player->Reset();
+        
         Survivor::NextLevel<Transicao>();
     }
     else
