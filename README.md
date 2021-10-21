@@ -1,5 +1,5 @@
 # Survivor
-Desenvolvimento de jogo de plataforma utilizando Engine criada por [Judson Santiago](https://github.com/JudsonSS)
+Desenvolvimento de jogo de plataforma como projeto para unidade 2 da disciplina de desenvolvimento de jogos, utilizando a Engine criada por [Judson Santiago](https://github.com/JudsonSS)
 
 # Indice
 - [Jogo](#video_game-Survivor)
@@ -50,8 +50,8 @@ bounding box em 3 formatos diferentes, Quadrado, Circular e Misto
 ## Copyright
 As musicas obtidas para o desenvolvimento deste jogo foram por meio da plataforma [openGameArt](https://opengameart.org/), assim como também grande parte das sprites e papeis de paredes.
 
-Musicas:
-dungeon (Dungeon 01 ) - Criada por Beau Buckley
+#### Musicas:  
+dungeon (Dungeon 01 ) - Criada por [Beau Buckley](https://opengameart.org/content/dungeon-01)
 
 ---
 
