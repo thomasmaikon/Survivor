@@ -53,6 +53,9 @@ As musicas obtidas para o desenvolvimento deste jogo foram por meio da plataform
 #### Musicas:  
 dungeon (Dungeon 01 ) - Criada por [Beau Buckley](https://opengameart.org/content/dungeon-01)
 
+#### Engine:  
+Professor [Judson Santiago](https://github.com/JudsonSS)
+
 ---
 
 ## Contribuição
