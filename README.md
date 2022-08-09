@@ -1,5 +1,5 @@
 # Survivor
-Desenvolvimento de jogo de plataforma como projeto para unidade 2 da disciplina de desenvolvimento de jogos, utilizando a Engine criada por [Judson Santiago](https://github.com/JudsonSS)   
+Desenvolvimento de jogo de plataforma como projeto para unidade 2 da disciplina de desenvolvimento de jogos desenvolvendo uma engine juntamente com [Judson Santiago](https://github.com/JudsonSS)   
 
 Link apresentação do jogo: https://youtu.be/ZONLHeH1YAs
 
