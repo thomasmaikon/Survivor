@@ -1,5 +1,5 @@
 # Survivor
-Desenvolvimento de jogo de plataforma como projeto para unidade 2 da disciplina de desenvolvimento de jogos, implementando e melhorando uma enginje durante o curso.
+Desenvolvimento de jogo de plataforma como projeto para unidade 2 da disciplina de desenvolvimento de jogos, implementando e melhorando uma engine durante o curso.
 
 Link apresentação do jogo: https://youtu.be/ZONLHeH1YAs
 
